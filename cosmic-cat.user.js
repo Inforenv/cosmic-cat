@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Cosmic Cat
 // @namespace    https://www.youtube.com/*
-// @version      0.5.43
+// @version      0.5.44b1
 // @description  Broadcast Yourself
 // @author       CiulinUwU
-// @updateURL    https://github.com/ciulinuwu/cosmic-cat/raw/main/cosmic-cat.user.js
-// @downloadURL  https://github.com/ciulinuwu/cosmic-cat/raw/main/cosmic-cat.user.js
+// @updateURL    https://raw.githubusercontent.com/ciulinuwu/cosmic-cat/main/cosmic-cat.user.js
+// @downloadURL  https://raw.githubusercontent.com/ciulinuwu/cosmic-cat/main/cosmic-cat.user.js
 // @match        https://www.youtube.com/
 // @match        https://www.youtube.com/?*
 // @match        https://www.youtube.com/watch?*
@@ -54,7 +54,9 @@
         data: {
             version: 4,
             loggedin: false,
+            darkyoutubelogo: "data:image/png;base64,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",
             i18nfolder: "https://raw.githubusercontent.com/ciulinuwu/ciulinations/main/i18n/",
+            darkNoiseBg: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAACVBAMAAACjjKV8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAtUExURRQUFBYWFhgYGBISEhERERUVFRcXFxAQEBMTEw8PDxsbGxkZGQ4ODhoaGg0NDc3ZmeMAAAAJcEhZcwAADsMAAA7DAcdvqGQAABBgSURBVGje7VlRb9tYev1o8ko3SAegTFHiYncBeRxnHPSFskSZg/SBiixFg8ECl6auxDQdgLIsW4Ppgx1biYApiktTV2YwWCCDmSxStC/tL0g6k+wUfZntAu1ri+4W87r/pNek6cFmM0kG6EsBPx8fi7z3+853zkeQKtW6fn2GJ1VuSDnraGeCuSRHDAlgc+vjfwLJkprxET6cn1QbO2sd5MW8pKSM5vY+W0SGy9TRoHGdgT1WFj2sOkHPiqslcnWsVl3bRq4pADZCNCSyH90wT4/Mr2uuTe5ghdx6dM4YO6GSQy0/KozhhQsAyJEQUaCgwpjOd0/nESI12WI9AUA0KVnolhzWTtg/qLN4L2j2B3XiWsOUoVJwpALkqN/pzromyD9d4bJZ8wWzt/lc7qsaM476SG4LINbH89ZJCeD2vLDg8qMjqqcsmjKyH219SqyhZMKkp9Xqf/9oa8H0Zyb0qiFvTujoGwUJwPTmJaNn7Pr9Gjvh6wdz2UUcek7bSxm1D/5F6U6ku5r4d4ZBIA40UqkeMbZGTGV8Bcbt7g1dUmVFAP2I80nNUmdlg7vruNK784SbNplVWcpYkss2XqIydMijXI8AoupYUldxiF3XrQcGcR5sVSUSoTNAs8Zs7K4TlRVHVTnK4QWigZUL11IGKSyZscp1XetIXAGocZCn45WFmdPBmpWdru8+cK1PaCgAZBrmPbWCCV+F/vrjk7y0S3xS0FAtZWz2t40RDIk8CI8VziCy4t8PJHfZUmrkRcHTS+1THeBRZArgdyYede0JaYuDu6nm7gYYMdL8NwU9Thn0QC+skpZ1dahX3V0C80Y4GOMnvPsL8bSqG2llts1WUTMWADkwOrpUeofxm9QMxZ/a+sJoDsLgNGXcJw/j3vw7cTzIqFYPQJ9dk2x80vwItvJHNZje+6k4KYzItgBkciT3dMN3w3s6FMxV6XGxEJ3kOsYwZWgsvqb/p+I8qJn5wcpTwDIaueaBetYG4o6qwRb/5K4aK6oAdsKmkwfckJWpi0AGYC4gQnpfySnD0vLSWd+NZC6XFAfcm7JujBw6k4wHkRMfgdXd+u607M8EUAyHeWveku+ROKosHutqq9UtU7xi8pThLupowAqnszo+NWUCfH3JQx4lZX9rM+ulY3Sw4gugB1X/JKaGz5HKFhJasofziMcDv5YyTGpRaTpvHaS9BD3a/Cxrlr2B1Z74ij8esxgJgFfXimbNDUwye2V7/bMR9v0te2VvfNTri5o4XutyLLe9Pf674G+UJdUrEPCryDg5A5z8iLtdieKoFv318a06asdKLz7eH6cMwuq0Mfmok//WWUFVFXoBtVq/tFUf5/c1UjROzVOju6rtvSsAO3aDTKNiP55q3G77uC4zPWX07P8OEWP3DxOJAzjDRoo0/xVs7P0gKb//bKS5y8/5+9szv2nzVspomI7xQSBfnyRKyuBMl7JDfqNgvXQtbM2R9Xid90TdhCMCRtceiM6LYh4tuMtj4mIcqGR1IQCfT6PsrmZrJGditY7mXNE2U8ZMHK0d+/YkvWpAsoX6rqopbaKeeF6bhhx1Vog1EYDU87zr14ItyPuVUyTlPn7oETpEUpOmDDouSOYWlfCaVae+CodYXcN2rKBjXCtyiZg76nDYMJyiAG68oJXl5wU+OlJ8es/SBwQCv/iOrbZTBoli5gycqNolupyrgKhB2fG7pFmbkTcW59bmCYURhOeMixdOzq0CC3+57EIDeZhR/OUE66wLw0AbxAIwwrl5sDC7uaWchI8Lc3+7NwyHOGwNUsZUlQNqxog87LDQByDcajuuVu0sNnI5THTjpHow/mql7Qugq+3Xnm2FBt7T4gXjkr6n7RQ2PbJKU0YPFWrFyagSBFxyxXMdNL9oyUS/E/nLVCv6BtFcVxZXrwigMwZMT8KVWc30C5WnTdag8qZuADtnmJZEn1jhmltth1zMITGXkcHjU9f25m89sHnKyOq6S1TbBjGHePRZJi4vlU+0cPP89l1x+0PplXL0tNotqUf+lpleBpCiTlQSESOSO9MTfEDUvSePRcmpAsjqR1ZxYUX7Iq6DHB7eLx9JQcqQELak2KzvJ+UHMJ/3uzm6zCUsdST2vnpzsrOxwqRqLIAt6sXaOBlY+eOWqmOTUDfn1vp+ysjmXWDIn8svGLhdVpiPdT1ny5BOKFTjdlwYCaDs1rpePpzvxg5U2+N8bq3iHM1s66CZMoyO65IRM1E6EqFYVNW1cIR+YtowDK3hbesL1VvGRBVAwaT+bzy8+LntyOGn0faoH8c+Y+0CSRlLfsl0v5BZztD6xSMC4rnJZDmdwK99IalTU20ziAPal88ZFwM8bIiRr4IQZci0V58rkl9lyoK8nVpLtnRqBaTu+o6jR0Inio5UQX82Nvo6YkrV0dvvkitd2/srAeBx0efihWZggLuvzil8pbrqEwjDlLEM5N9dPiQ+tIqS8CZqLoZMG9rFOBxbcc5hftU8A4aw8evw5K7Vt3AknWzfCqeev/K9msi5lVxJG84VtxuXPAISjxvqzBm5nlXz7lPV0NU1C6SlmQBq7j54ZuE7tGXQkfE/q7w0ifuiuku5lDHMz3OWXvOszbErhQTqj2hxT4xJf325TNWJ/l9Dtl56CgtNAIWealiw/bOclDScpauNgUNuKz+pp4ysX6duLvyopIJwjr5mr1/5TT5evMFSwrmu9yp2ysjGwjCZkgFEgdnNXDhmTWBmf71YhIMz4DZVCZiAhZRThD40M/+Q+XYWp02d2g8AIQ89Le4l4+mPVcCbUxY5tpRNwU9LVavw5773+D0+TxnZdHuUDFEGQvHUcykMfqQUbpxL4R6cSeGqqK+nEzkzWajVCkm52Q6PN93fCgChZn2D8x+0ZabVdDk3ypVe3dalA5Aa8KsDVJN+znrNdve0cz8zCQJ45DueDuP0yt0lUUHqe8zwI6uUMrKKKSYeA+BEw3RyWBqUW2OO4w38sesq9Xo4JQLI/NVU60EsLaQ5PWCU9BqhnjL6p4Xx4XHDT+2Z+n+bFYrWvYocX70dqJ1KoJ42jTZf6xglVQDZzPLCfohiL9/PVzmrL1h5OWW8Czb7+r6k7CQjT2hhfI36ReENhjP/ls6lWbU3lFUXWwLwhGWKJ+QO93OW0bxqLm+M7UPbsBQrZdCwGw8WZT5f8UlZ6IRov0bWZVfQHFVJznvbvtyLeYCFRwvSS4I+b1rZe8vJe/dKvH+TOQKoIbs55M1Fm49svL59ih1L9QnaUmjKOD82/Wly0AyEELupQk9OfpxC23Cu0PGqUOg7VbjMtZe59jLXXubay1x7mWsvc+1lrr3MtZe59jLXXubay1x7mWv/X+faItPdrJIi1Y3fu9WLe3DfpgIgcc1u/MfWqtPz2atqTwvSU8GJv62AEHSSZC107eu3V/qUkYQ7sv1hNwl3IiLXppM5yMU+Odh5ZRjTwbO9OCxZxViaanVuzoxON2Vko66Cdh76lQPI3d0oaFNryRKmZUP1G0cHiWlZLQugSDn2emHj6GaxW2CLoR1PRGbsDxsrKeOi0VdQtL8JsOYbTmMFUYpuodqhy7CSuRff6BzG1ZAOw9uUPHHb6zd016eMw9xhKUPeUanoqYqXmB8HbFQQJpQiPvgDJvU592Hqi2A80AXgF/DHt1CXyEGjrJq10ckKKoxdplajlGEhSnz6tyqXu13KANwg2jrOFhPf/9kfsACanlBVWj0wrWhB8TQSljSXlz0RMFLG7VaymBDhTJLFYAD0hHKhZYkrQWpEjZO2VVKMBRcAG7lz9Stp9bp3qoURaWU9E6+lDIJJ6kqSlhM/5MYXJZoE5cBdrDHwqQAaqN9vOl/zINc6wSUh6F3aX+9JF7YjKVFUrYRnQTkHIMJg6VyG3FenRENkeQczIzDaA4woak0K58KV6Z6R6J5QSk0ZZVnzLe3gRTrdXEvV00/yB4GSbptZIr6Bs21POH0gAHtpSdlfj1Sz3LINsrz0cobOZuByuiwCdLdQ16hpddzBs+i0vxiAZUZ8/WF0BoR6m2Nz6B6/iHPTd/rNoclCpfVN81rKaFqe3Bvrnxr2dDI+EP5e2E6unW57zl/YL/tRuSOjuEEe1iMCrN/SSDNcNlewPjlnGK49XavLv41EmZbLAQgVh5rctejHztob5F1/tuevkefdoltJGbJZj2j/yyWayBwDcZ3VwASF0x0OzEfKzyrOnWwhkkPGjg+Ik7ERBXS8W7za7cOuXQlTRlYmJNmnfAsiuiaZdleDyY/JtGeMs0y71zRzqWkwQRxoPfOWrz/pwTNfamCtNKh25ymjmXhLA5o9n0Q5FQqmV88897aZClGpjbgkgGyP9EMuPdOxabKGEs09bjvZjmwiHWYj7622aqj9d7En83w6MdnZcUN2qiJxKx6yW89g/OJt7iFrV5zstUQeEgK+uL1Gi1wM2B9U9mtfk1ZULeiTwFuNXc5SBt69R92ui9K1HQORx/1yefjALEnotUGdqFUIlwvv22llnjGywqYbOx3FATCK0x6Lo3mXDdJAGs73jcjQ+wKgV3hx++RzqnMfE7yFM012t1JGF8f2VowOU0lX4T55eNF1WMWtUegP5/qshC+WbpHzQ31aSGpBLzvJzk4FYZ155pB/xJo2YWS74WqaZSB+Yt6dL6cdH9dx0vGyh+1tAdBnWjf77Q8nbJ/8frekYaxu3UwZWRn7yaMzEF7dHCzp8TZbc15p4uPFnqKPj9pI62f754GTMrLdTra+Fve8m20sX1sAr9hxtiZ6XpoPiZaaARCT+n42kAuEyrRhkQaJ3mqEZ159qCNieQGIzOZ3zpe05GoVFa4wbFyEOatHFngMrss3i/2gUb1Nbo0jND5nzD9JlrT+NMmCjyAHD53MpcYyU0X+jJW56coCONusKCxXkqxZPA5XYqOVxyOFBZmvzRYzE2ZL0GYgMjFkbfN26f/7Rsu23aZmxN12ALF4hyyz6NnAK1+rfSKA9BxGVB7jWmJlXlr4XBxjMi8PgLyfr2XZLTzPbsqsaUwEYLmv/2qRVU1a2CqcJfUskP+RaL5FhEf5KP06EVbHR0UGIsetZyH7tQHPuFD3i1guQrbPdjGaJ8PBhFOufZUFH9VIFsu9+S/iw6kALnY/2bB/KSpljqOQegUQZtE2OrRk92r4T11klhDxaUtfFP8VU5dKhzsbRsoI52N3xFtmnBQtg5VvAy3blAEe1j5Art6UIoLOgDfs1mooXL6qGHKQRH0C4v+Ts03F9hp8+Sc/XMOM/yMN7OeO3otrcY59twyGEtuQMrLVSPPDp5zqBJBH/bE6602fSeabN5fZdjZlZOYqXe6qZznk89nJgUwMJ7KuW5OYx1hx9YsVUnwjsCZNJ5J8arVKiGy6I2upmTLK8XtgSXNcS/KNeC679U02qXDN/2ULFvW3nW2ZFYXkmw2AGJ7kbPuuC0/4Nt+qiDm30n29Dtm63+wuJGsi7MpB81G2FA1+5FI0ixXXkx0NgN6X42xDtbpyUTH4LwXwWU+i3chmk3fCisS60cs7rYhb37pbsNhO7l0FX7NJZkLCWvIxi5enWv/5GQCeFOVXloDjV9qWLH4ZmjUrO87/AvEAih+h+dAFAAAAAElFTkSuQmCC",
             playerSettingsSheet: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAANCAIAAADntZOlAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAlSURBVBhXY/j//z/Tv39/gfgfnP7/H8GGif8H0r9//WT69uUTAPDNJqPDjzoaAAAAAElFTkSuQmCC",
             playbarScrub: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD5SURBVChTjZHNjkRQEIUP4p+dVe/EC9iJhQgvLlYsvQC2JFaIIOH21G09s5CZnpNclZz66kdKwKVt21hd1xiG4XJechwHnudBVVXO8s88zyzPcxzHAUH47sHFGIMkSYjjGJZlCQJ1LooC+75D0zSs63qLJEVREIYhxKZpeGcyoiiCLMu3+LUOzvMEsWLXdTAMg5u/iXLE9H0PkXYk468Cmk6Ppoj0Q58K3nli+Ur/LSBW1HWdj/pUQAyxYpqmqKqKm+M44vF43CLliCGWX6ltW0ZGEAQwTZN3fWtZFpRlCd/34bruz1np2lmWYZqmy3nJtm0kScKvDABP3bl3Ot4gE8wAAAAASUVORK5CYII=",
             playbarSheet: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAZCAIAAAB/8tMoAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAhSURBVBhXY7h69SoTCDAzMxNNMzAwgNmMjIyEMMP///8BIN0GJrVyhfoAAAAASUVORK5CYII=",
@@ -218,7 +220,7 @@
                         let list = a.tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].gridRenderer.items;
 
                         let fetch = async (url) => {
-                            let a = await document.cosmicCat.func.getApi("/youtubei/v1/browse", `continuation: "${url}"`);
+                            let a = await document.cosmicCat.AJAX.post("/youtubei/v1/browse", `continuation: "${url}"`);
                             await loop(a.onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems);
                             return a;
                         };
@@ -528,7 +530,7 @@ ${string_uploadedorlive} <span class="feed-item-time">${videoData.views[1]}</spa
             },
             subscriptions: async () => {
                 let test = new Promise(async resolve => {
-                    let subs = await document.cosmicCat.func.getApi("/youtubei/v1/guide");
+                    let subs = await document.cosmicCat.AJAX.post("/youtubei/v1/guide");
                     let org = await document.cosmicCat.func.organizeSubscriptionsData(subs);
                     resolve(org);
                 });
@@ -657,605 +659,6 @@ ${string_uploadedorlive} <span class="feed-item-time">${videoData.views[1]}</spa
             }
         },
         func: {
-            buildPlayer: (videoId, time) => {
-                var ELEMENT = document.querySelector("#video-player");
-                var TEMP = document.createElement("div");
-                TEMP.setAttribute("class", "player");
-                ELEMENT.setAttribute("tabindex", 0);
-                ELEMENT.append(TEMP);
-                var DOM = ELEMENT.querySelector(".player");
-                (() => {
-                    var DOM_topBar = document.createElement("div");
-                    DOM_topBar.setAttribute("class", "video-topbar");
-                    DOM_topBar.innerHTML = `<div class="video-topbar-container"><div class="video-title"><span id="video-title-text">Hey guys, did you know that in terms of male human and female Pokémon breeding...</span></div></div>`;
-                    DOM.appendChild(DOM_topBar);
-                })();
-                (() => {
-                    var DOM_embedVideo = document.createElement("div");
-                    DOM_embedVideo.setAttribute("class", "video-container");
-                    DOM_embedVideo.innerHTML = `<div id="video-main-content"></div><div class="video-blank"></div>`;
-                    DOM.appendChild(DOM_embedVideo);
-                })();
-                (() => {
-                    var DOM_scrubBar = document.createElement("div");
-                    DOM_scrubBar.setAttribute("class", "video-scrubbar");
-                    DOM_scrubBar.setAttribute("role", "progressbar");
-                    DOM_scrubBar.setAttribute("aria-valuemin", "0");
-                    DOM_scrubBar.setAttribute("aria-valuemax", "100");
-                    DOM_scrubBar.setAttribute("data-canmouse", "false");
-                    DOM_scrubBar.innerHTML = `<div class="dddd" data-canmouse="false" style="height: inherit;width: 640px;z-index: 33;position: absolute;"></div><span class="playbar-scrubbar track_played"></span><span class="playbar-scrubbar track_handle"></span>`;
-                    DOM.appendChild(DOM_scrubBar);
-                })();
-                (() => {
-                    var DOM_blackBar = document.createElement("div");
-                    DOM_blackBar.setAttribute("class", "black_line");
-                    DOM.appendChild(DOM_blackBar);
-                })();
-                (() => {
-                    var DOM_playBar = document.createElement("div");
-                    DOM_playBar.setAttribute("class", "video-playbar");
-                    DOM_playBar.innerHTML = `<ul class="playbar-controls left">
-<li class="playbar-controls_icon playbar-controls_play" data-state="0">
-<i class="playbar-icon playbar-icon_play"></i>
-</li><div class="playbar-volume_container" data-name="volume" data-type="tooltip" data-tooltip="${localizeString("player.mute")}">
-<li class="playbar-controls_icon playbar-controls_volume" data-state="3">
-<i class="playbar-icon playbar-icon_volume"></i>
-</li>
-<div class="playbar-volume-container">
-<div class="playbar-volume-slider progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-canmouse="false">
-<div class="ddde" data-canmouse="false" style="height: inherit;width: 53px;z-index: 33;position: absolute;"></div>
-<span class="playbar-volume track_played"></span>
-<span class="playbar-volume track_notplayed"></span>
-<span class="playbar-volume track_handle"></span>
-</div>
-</div>
-</div>
-</ul>
-<div class="playbar-timestamp_container">
-<span class="playbar-timestamp">
-<a id="timestamp_current">0:00</a> / <a id="timestamp_total">9:99</a>
-</span>
-</div>
-<ul class="playbar-controls right">
-<li class="playbar-controls_icon playbar-controls_cc">
-<i class="playbar-icon playbar-icon_cc"></i>
-</li><li class="playbar-controls_icon playbar-controls_settings" data-name="settings" data-type="tooltip" data-tooltip="${localizeString("player.quality")}">
-<i class="playbar-icon playbar-icon_settings"></i>
-</li><li class="playbar-controls_icon playbar-controls_watchlater" data-name="watchlater" data-type="tooltip" data-tooltip="${localizeString("personal.watchlater")}">
-<i class="playbar-icon playbar-icon_watchlater"></i>
-</li><li class="playbar-controls_icon playbar-controls_fullscreen" data-name="fullscreen" data-state="0" data-type="tooltip" data-tooltip="${localizeString("player.fullscreen")}">
-<i class="playbar-icon playbar-icon_fullscreen"></i>
-</li>
-</ul>`;
-                    DOM.appendChild(DOM_playBar);
-                })();
-                (() => {
-                    var a = document.createElement("style");
-                    a.setAttribute("class", "player-style");
-                    let script = `body {margin:0}
-* {
-    --lld: url(${document.cosmicCat.data.playbarBg});
-    --lll: linear-gradient(0deg, rgba(29,29,29,1) 0%, rgba(49,49,49,1) 100%);
-    --llr: linear-gradient(0deg, rgba(9,9,9,1) 0%, rgba(29,29,29,1) 100%);
-    --llRED: url(${document.cosmicCat.data.scrubBarRedSheet});
-    --llGRAY: url(${document.cosmicCat.data.scrubBarGraySheet});
-    --texture-playbar: url(${document.cosmicCat.data.playerSheetB}) no-repeat;
-}
-.playmenu-container {
-    display: none;
-}
-#video-player {
-    display: block;
-    width: 640px;
-    height: 390px;
-    background-color: black;
-}
-#video-player .player {
-    width: inherit;
-    height: inherit;
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-}
-#video-player .video-topbar {
-width: inherit;
-overflow: hidden;
-position: absolute;
-z-index: 1;
-height: 28px;
-user-select: none;
-}
-#video-player:hover .video-topbar-container {
-top: 0px;
-transition: top 0s ease-in;
-}
-#video-player .video-topbar-container {
-background: linear-gradient(0deg, rgb(13, 13, 13) 0%, rgb(40, 40, 40) 100%);
-width: inherit;
-top: -30px;
-transition: top .6s cubic-bezier(1,0,1,1);
-position: absolute;
-}
-#video-player .video-title {
-float: left;
-padding: 8px 13px;
-color: white;
-}
-#video-player .video-topbar-buttons {
-display: flex;
-height: 25px;
-line-height: 25px;
-overflow: hidden;
-position: relative;
-user-select: none;
-border-top: 1px solid #484646;
-border-bottom: 1px solid #0b0b0b;
-background: var(--lld);
-z-index: 3;
-}
-#video-player .video-container {
-    height: 360px;
-    width: inherit;
-    position: relative;
-    z-index: 0;
-}
-#video-player .black_line {
-    height: 1px;
-    width: inherit;
-    z-index: 1;
-    background: black;
-}
-#video-player:fullscreen .video-container {
-    height: 97%;
-}
-#video-player:fullscreen #video-main-content {
-    height: 100%;
-}
-#video-player #video-main-content {
-    position: relative;
-    z-index: -1;
-    width: inherit;
-}
-#video-player .video-blank {
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    position: absolute;
-    top: 0;
-    z-index: -1;
-}
-#video-player .video-scrubbar {
-background: var(--lld);
-cursor: pointer;
-height: 3px;
-position: relative;
-transition: margin-top .6s cubic-bezier(1,0,1,1), height .6s cubic-bezier(1,0,1,1);
-z-index: 4;
-}
-#video-player:hover .video-scrubbar {
-transition: .1s;
-height: 8px;
-margin-top: -5px;
-}
-#video-player:hover .playbar-scrubbar.track_handle {
-    transform: scale(1);
-    opacity: 1;
-    transition: transform 0s, opacity 0s;
-}
-#video-player .playbar-scrubbar.track_played {
-height: inherit;
-background: var(--llRED);
-position: absolute;
-top: 0;
-left: 0;
-bottom: 0;
-transition: max-height 1s;
-}
-#video-player .playbar-scrubbar.track_handle {
-    background: var(--texture-playbar);
-    background-position: -84px -185px;
-    display: block;
-    width: 16px;
-    height: 16px;
-    margin: -5px -7.5px;
-    border-radius: 9px;
-    opacity: 0;
-    transition: transform 1s, opacity 1s;
-    transform: scale(0.3);
-    z-index: 100;
-    position: absolute;
-}
-#video-player .playbar-scrubbar.track_handle:hover {
-background-position: -84px -163px;
-}
-#video-player .video-playbar {
-    display: flex;
-    background: var(--lld);
-    height: 25px;
-    line-height: 25px;
-    overflow: hidden;
-    width: inherit;
-    z-index: 3;
-}
-#video-player .playbar-controls {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: inherit;
-    line-height: inherit;
-    display: flex;
-}
-#video-player .playbar-controls_icon {
-    width: 30px;
-    display: flex;
-    text-align: center;
-    border: 0;
-    position: relative;
-    cursor: pointer;
-    background: var(--lld);
-    z-index: 1;
-    margin: 0px 1px;
-}
-#video-player .playbar-controls_icon::before, #video-player .playbar-controls_icon::after {
-    content: ' ';
-    position: absolute;
-    top: 0;
-    width: 1px;
-    height: inherit
-}
-#video-player .playbar-controls_icon::before {
-    left: -1px;
-    background: var(--lll);
-    height: 25px;
-}
-#video-player .playbar-controls_icon::after {
-    right: -1px;
-    background: var(--llr);
-    height: 25px;
-}
-#video-player .playbar-icon {
-    background: var(--texture-playbar);
-    margin: auto;
-}
-#video-player .playbar-controls_play .playbar-icon.playbar-icon_play {
-width: 13px;
-height: 17px;
-}
-#video-player .playbar-controls_play[data-state^="1"] .playbar-icon.playbar-icon_play {
-background-position: 0px -22px;
-}
-#video-player .playbar-controls_play[data-state^="0"]:hover .playbar-icon.playbar-icon_play {
-    background-position: -21px -0px;
-}
-#video-player .playbar-controls_play[data-state^="1"]:hover .playbar-icon.playbar-icon_play {
-    background-position: -19px -22px;
-}
-#video-player .playbar-controls_volume[data-state^="0"] .playbar-icon.playbar-icon_volume {
-    background-position: 4px -105px;
-}
-#video-player .playbar-volume_container:hover .playbar-controls_volume[data-state^="0"] .playbar-icon.playbar-icon_volume {
-    background-position: -24px -105px;
-}
-#video-player .playbar-controls_volume[data-state^="1"] .playbar-icon.playbar-icon_volume {
-    background-position: 4px -124px;
-}
-#video-player .playbar-volume_container:hover .playbar-controls_volume[data-state^="1"] .playbar-icon.playbar-icon_volume {
-    background-position: -24px -124px;
-}
-#video-player .playbar-controls_volume[data-state^="2"] .playbar-icon.playbar-icon_volume {
-    background-position: 4px -143px;
-}
-#video-player .playbar-volume_container:hover .playbar-controls_volume[data-state^="2"] .playbar-icon.playbar-icon_volume {
-    background-position: -24px -143px;
-}
-#video-player .playbar-controls_volume[data-state^="3"] .playbar-icon.playbar-icon_volume {
-    background-position: 4px -162px;
-}
-#video-player .playbar-volume_container:hover .playbar-controls_volume[data-state^="3"] .playbar-icon.playbar-icon_volume {
-    background-position: -24px -162px;
-}
-#video-player .playbar-icon.playbar-icon_settings {
-    background-position: 0px -42px;
-    height: 20px;
-    width: 16px;
-}
-#video-player .playbar-controls_settings:hover .playbar-icon.playbar-icon_settings {
-background-position: -24px -42px;
-}
-#video-player .playbar-icon.playbar-icon_watchlater {
-    background-position: 0px -66px;
-    height: 14px;
-    width: 13px;
-}
-#video-player .playbar-icon.playbar-icon_cc {
-    background-position: 0px -85px;
-    height: 13px;
-    width: 17px;
-}
-#video-player .playbar-icon.playbar-icon_fullscreen {
-    background-position: 0px -181px;
-    height: 17px;
-    width: 20px;
-}
-#video-player .playbar-controls_fullscreen:hover .playbar-icon.playbar-icon_fullscreen {
-background-position: -28px -181px;
-}
-#video-player .playbar-timestamp_container {
-    margin: 0 1px;
-    border: 0;
-    position: relative;
-    height: 26px;
-    line-height: 26px;
-    z-index: 2;
-    background: var(--lld);
-    width: 80px;
-}
-#video-player .playbar-timestamp_container::before {
-    content: ' ';
-    position: absolute;
-    top: 0;
-    width: 1px;
-    height: inherit
-}
-#video-player .playbar-timestamp_container::before {
-    background: var(--lll);
-    left: -1px;
-}
-#video-player a {
-    color: white;
-    cursor: default;
-    text-decoration: none;
-}
-#video-player .playbar-volume-container {
-display: inline-block;
-width: 66px;
-height: 26px;
-line-height: 26px;
--webkit-transition: margin .2s cubic-bezier(0.4,0,1,1),width .2s cubic-bezier(0.4,0,1,1);
-transition: margin .2s cubic-bezier(0.4,0,1,1),width .2s cubic-bezier(0.4,0,1,1);
-cursor: pointer;
-outline: 0;
-}
-#video-player .playbar-volume_container {
-display: flex;
-width: 32px;
-transition: width .8s;
-}
-#video-player .playbar-volume_container:hover {
-width: 98px;
-transition: width .1s;
-}
-#video-player .playbar-volume-slider {
-width: 53px;
-height: 25px;
-border-radius: 4px;
-display: flex;
-margin: 0px 6px;
-}
-#video-player .playbar-volume {
-border-radius: 4px;
-height: 4px;
-display: block;
-position: relative;
-top: 50%;
-transform: translate(0, -50%);
-}
-#video-player .playbar-volume.track_played {
-background: red;
-width: 100%;
-}
-#video-player .playbar-volume.track_notplayed {
-background: black;
-}
-#video-player .playbar-volume.track_handle {
-height: 15px;
-width: 6px;
-display: block;
-border-radius: 4px;
-background: white;
-position: relative;
-margin-left: -55px;
-left: 100%;
-}
-#video-player .playbar-controls_play {
-    width: 55px;
-}
-#video-player .playbar-icon_volume {
-    height: 16px;
-    width: 30px;
-}
-#video-player #playbar-seek {
-    -webkit-appearance: none;
-    width: inherit;
-    height: 4px;
-    outline: none;
-    max-width: 53px;
-}
-#video-player .playbar-controls_play::before {
-    background: none;
-}
-#video-player .playbar-controls_cc::before {
-    background: none;
-}
-#video-player .playbar-controls_fullscreen {
-    width: 29px;
-}
-#video-player .playbar-controls_fullscreen::after {
-    background: none;
-}
-#video-player .playbar-timestamp {
-    font-size: 10px;
-    color: gray;
-    float: left;
-    margin-left: 6px;
-}
-#video-player #timestamp_total {
-    color: gray;
-}
-
-.hid {
-    display: none !important;
-}
-.deez::after {
-margin-left: 15px !important;
-}
-.right {
-    margin-left: auto !important;
-}`;
-                    script = script.replace(/(?:\r\n|\r|\n)/g, "");
-                    a.innerText = script;
-                    ELEMENT.appendChild(a);
-                })();
-                (() => {
-                    var tag = document.createElement('script');
-                    tag.src = "https://www.youtube.com/iframe_api";
-                    DOM.append(tag);
-                    var timm = time ? `'time':` + time + "," : ``;
-                    var a = document.createElement("script");
-                    var script = `
-var progress;
-let canMouse = false;
-let dur = 0;
-/* Called by YouTube API */
-var onYouTubeIframeAPIReady = () => {
-document.cosmicCat.player = new YT.Player('video-main-content', {
-height: '360',
-width: '640',
-videoId: '${videoId}',
-playerVars: {
-'enablejsapi': 1,
-'rel': 0,
-'controls': '0',
-'cc_load_policy': '0'
-},
-events: {
-'onReady': onPlayerReady,
-'onStateChange': onStateChange
-}
-});
-};
-/* Keyboard shortcuts for the player */
-document.querySelector("#video-player").addEventListener("keydown", (e) => {
-if (!e) return;
-e.preventDefault();
-switch (e.key) {
-case " ":
-document.querySelector(".playbar-controls_play").click();
-break;
-case "f":
-document.querySelector(".playbar-controls_fullscreen").click();
-break;
-case "ArrowRight":
-document.cosmicCat.player.seekBy(5);
-break;
-case "ArrowLeft":
-document.cosmicCat.player.seekBy(-5);
-break;
-case "ArrowUp":
-document.cosmicCat.func.setVolume(document.cosmicCat.player.getVolume() + 5);
-break;
-case "ArrowDown":
-document.cosmicCat.func.setVolume(document.cosmicCat.player.getVolume() - 5);
-break;
-};
-});
-/* New click event */
-document.querySelector("movie-player").addEventListener("click", e => {
-const target = e.target.className;
-switch (true) {
-case /video-blank|playbar-icon_play|playbar-controls_play/g.test(target):
-document.cosmicCat.func.playPause(document.querySelector(".playbar-controls_play").getAttribute("data-state"));
-break;
-case /playbar-icon_volume|playbar-controls_volume/g.test(target):
-document.cosmicCat.func.mutePlayer(document.querySelector(".playbar-controls_volume").getAttribute("data-state"));
-break;
-case /playbar-icon_fullscreen|playbar-controls_fullscreen/g.test(target):
-document.cosmicCat.func.fullscreenPlayer(document.querySelector(".playbar-controls_fullscreen").getAttribute("data-state"));
-break;
-};
-});
-/* Mousedown event */
-document.querySelector("movie-player").addEventListener("mousedown", e => {
-let tar = e.target;
-if (tar.classList[1] == "track_handle") {
-tar = e.target.parentElement;
-}
-if (tar.dataset.canmouse == "false") { tar.dataset.canmouse = true; };
-if (tar.classList[0] == "playbar-scrubbar") { document.cosmicCat.player.pauseVideo(); };
-});
-/* Mouseout event */
-document.addEventListener("mouseup", () => {
-if (!document.querySelector("[data-canmouse='true']")) return;
-document.querySelector("[data-canmouse='true']").dataset.canmouse = false;
-progress = setInterval(document.cosmicCat.func.preProPos, 1);
-document.cosmicCat.player.playVideo();
-});
-/* Move event */
-const getOffset = (e) => {
-let offset = Math.round((e.pageX - e.currentTarget.offsetLeft) / e.currentTarget.offsetWidth * 100);
-
-if (offset > 100 || offset < 0) return;
-
-return offset;
-};
-
-const setValuenow = (e) => {
-let get = e[0].target.parentElement;
-let tar = e[0].target.attributes["aria-valuenow"].nodeValue;
-
-if (e[0].target.className == "track_handle") {
-get = get.parentElement;
-};
-
-if (tar > 100 || tar < 0) return;
-
-if (get.className == "video-scrubbar") {
-document.cosmicCat.player.seekBy(dur);
-};
-
-get.children[1].style.width = tar + "%";
-get.children[2].style.left = tar + "%";
-};
-
-new MutationObserver(setValuenow).observe(document.querySelector(".dddd"), { attributes: true });
-new MutationObserver(setValuenow).observe(document.querySelector(".ddde"), { attributes: true });
-
-document.querySelector("#video-player").addEventListener("mousemove", e => {
-if (!document.querySelector(".dddd[data-canmouse='true']")) return;
-clearInterval(progress);
-document.querySelector(".dddd[data-canmouse='true']").setAttribute("aria-valuenow", getOffset(e));
-dur = ((e.pageX - e.currentTarget.offsetLeft) / document.querySelector("#video-player").clientWidth * document.cosmicCat.player.getDuration());
-});
-document.querySelector(".ddde").addEventListener("mousemove", e => {
-if (!document.querySelector(".ddde[data-canmouse='true']")) return;
-document.querySelector(".ddde[data-canmouse='true']").setAttribute("aria-valuenow", getOffset(e));
-document.cosmicCat.func.setVolume(getOffset(e));
-});
-var playVideo = () => {
-document.querySelector(".playbar-controls_play").setAttribute("data-state", "1");
-};
-var onPlayerReady = async () => {
-document.querySelector("#timestamp_total").innerText = document.cosmicCat.func.calculateLength(parseInt(document.cosmicCat.player.getDuration()));
-document.querySelector("#video-title-text").innerText = document.cosmicCat.player.videoTitle;
-progress = setInterval(document.cosmicCat.func.preProPos, 1);
-setInterval(document.cosmicCat.func.trackCurrent);
-
-document.querySelector(".video-blank").style = "background: none;";
-};
-var onStateChange = (e) => {
-switch (e.data) {
-case 1:
-playVideo();
-break;
-case 0:
-document.querySelector(".playbar-controls_play").setAttribute("data-state", "0");
-};
-};`;
-                    script = script.replace(/(?:\r\n|\r|\n)/g, "");
-                    a.innerText = script;
-                    DOM.append(a);
-                })();
-            },
             trackCurrent: () => {
                 document.querySelector("#timestamp_current").innerText = document.cosmicCat.func.calculateLength(parseInt(document.cosmicCat.player.getCurrentTime()));
             },
@@ -1350,38 +753,25 @@ document.querySelector(".playbar-controls_play").setAttribute("data-state", "0")
                 let title = da.title ? (da.title.simpleText) ? da.title.simpleText : (da.title.runs) ? da.title.runs[0].text : false : da.videoDetails ? da.videoDetails.title : "";
                 let videoId = da.videoId ? da.videoId : da.videoDetails ? da.videoDetails.videoId : "";
                 let url = owner.navigationEndpoint ? owner.navigationEndpoint.browseEndpoint.canonicalBaseUrl : da.videoDetails ? "/channel/" + da.videoDetails.channelId : "";
-                let description = da.detailedMetadataSnippets ? da.detailedMetadataSnippets[0].snippetText.runs[0].text : da.descriptionSnippet ? da.descriptionSnippet.runs[0].text : da.description ? da.description.runs[0].text : da.videoDetails ? da.videoDetails.shortDescription : "";
+                let _description = da.detailedMetadataSnippets ? da.detailedMetadataSnippets[0].snippetText.runs : da.descriptionSnippet ? da.descriptionSnippet.runs : da.description ? da.description.runs : da.videoDetails ? da.videoDetails.shortDescription : "";
                 let icon = da.channelThumbnailSupportedRenderers ? da.channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer.thumbnail.thumbnails[0].url : "";
                 let tags = da.videoDetails ? da.videoDetails.keywords ? da.videoDetails.keywords : false : [];
                 let category = "";
                 if (window.location.pathname.split("/")[1] == "watch") {
-                    category = ytInitialPlayerResponse.microformat.playerMicroformatRenderer.category;
+                    category = ytInitialPlayerResponse?.microformat?.playerMicroformatRenderer?.category;
                 }
 
-                description = description.replace(/(?:\r\n|\r|\n)/g, '<br>');
-                let up = upload.split("-");
-                let m = [`${localizeString("uploadmonth.jan")}`,`${localizeString("uploadmonth.feb")}`,`${localizeString("uploadmonth.mar")}`,`${localizeString("uploadmonth.apr")}`,`${localizeString("uploadmonth.may")}`,`${localizeString("uploadmonth.jun")}`,`${localizeString("uploadmonth.jul")}`,`${localizeString("uploadmonth.aug")}`,`${localizeString("uploadmonth.sep")}`,`${localizeString("uploadmonth.oct")}`,`${localizeString("uploadmonth.nov")}`,`${localizeString("uploadmonth.dec")}`];
-                let vv = up[1] ? up[1].toString().replace(/0/, "") : "";
-                upload = `${m[vv - 1]} ${up[2]}, ${up[0]}`;
-                let links = description.matchAll(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi);
-                let tag = description.matchAll(/(#[a-z\d-]+)/gi);
-                let stamp = description.matchAll(/[0-5]?\d(?::[0-5]?\d){1,2}/g);
-                for (const an of links) {
-                    description = description.replace(an[0] + "<br>", `<a href="${an[0]}" target="_blank" title="${an[0]}" rel="nofollow" dir="ltr" class="yt-uix-redirect-link">${an[0]}</a><br>`);
-                }
-                for (const an of tag) {
-                    description = description.replace(an[0], `<a href="https://www.youtube.com/results?search_query=${an[0].slice(1)}&search=tag" target="_blank" title="${an[0]}" rel="nofollow" dir="ltr" class="yt-uix-redirect-link">${an[0]}</a>`);
-                }
-                for (const an of stamp) {
-                    let a = an[0].split(":");
-                    let s = 0, m = 1;
-
-                    while (a.length > 0) {
-                        s += m * parseInt(a.pop(), 10);
-                        m *= 60;
+                let description = "";
+                for (const snippet in _description) {
+                    if (_description[snippet].navigationEndpoint) {
+                        let href = _description[snippet].navigationEndpoint.commandMetadata.webCommandMetadata.url;
+                        description += `<a href="${href}">${_description[snippet].text}</a>`;
+                    } else {
+                        description += _description[snippet].text;
                     }
-                    description = description.replace(an[0], `<a data-watchtime="${s}" onclick="document.cosmicCat.player.seekTo(this.getAttribute('data-watchtime'))">${an[0]}</a>`);
                 }
+
+                description = description.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 
                 return {
                     owner: owner,
@@ -1426,84 +816,7 @@ document.querySelector(".playbar-controls_play").setAttribute("data-state", "0")
                 };
             },
             organizeCommentData: (da = Object) => {
-                if(!da) return {};
-                let author = da.authorText.simpleText;
-                let id = da.commentId;
-                let text = document.cosmicCat.func.escapeHtml(da.contentText.runs[0].text);
-                let time = da.publishedTimeText.runs[0].text;
-                let url = da.authorEndpoint.browseEndpoint.canonicalBaseUrl;
-                let authorId = da.authorEndpoint.browseEndpoint.browseId;
-                let likes = da.voteCount ? `<span dir="ltr" class="comments-rating-positive" title="">
-${da.voteCount ? da.voteCount.simpleText : ""}
-<img class="comments-rating-thumbs-up" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif">
-</span>` : "";
-
-                let __a = [[], []];
-
-                if(da.cum !== "a") {
-                    __a[0] = `<li class="comment yt-tile-default" data-author-id="${authorId}" data-id="${id}" data-score="-1">`;
-                    __a[1] = `</li>`;
-                }
-
-                let result = `${__a[0]}<div class="comment-body">
-<div class="content-container">
-<div class="content">
-<div class="comment-text" dir="ltr">
-<p>${text}</p>
-</div>
-<p class="metadata">
-<span class="author">
-<a href="${url}" class="yt-uix-sessionlink yt-user-name" data-sessionlink="" dir="ltr">${author}</a>
-</span>
-<span class="time" dir="ltr">
-<a dir="ltr" href="https://www.youtube.com/watch?v=${id}&lc=${id}">${time}</a>
-</span>
-${likes}
-</p>
-</div>
-<div class="comment-actions">
-<span class="yt-uix-button-group">
-<button type="button" class="start comment-action-vote-up comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Up" data-action="vote-up" data-tooltip-show-delay="300" role="button">
-<span class="yt-uix-button-icon-wrapper">
-<img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-up" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="Vote Up">
-<span class="yt-valign-trick"></span>
-</span>
-</button><button type="button" class="end comment-action-vote-down comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Down" data-action="vote-down" data-tooltip-show-delay="300" role="button">
-<span class="yt-uix-button-icon-wrapper">
-<img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-down" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="Vote Down">
-<span class="yt-valign-trick"></span>
-</span>
-</button>
-</span>
-<span class="yt-uix-button-group">
-<button type="button" class="start comment-action yt-uix-button yt-uix-button-default" onclick=";return false;" data-action="reply" role="button">
-<span class="yt-uix-button-content">Reply </span>
-</button><button type="button" class="end yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
-<img class="yt-uix-button-arrow" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="">
-<div class=" yt-uix-button-menu yt-uix-button-menu-default" style="display: none;">
-<ul>
-<li class="comment-action-remove comment-action" data-action="remove">
-<span class="yt-uix-button-menu-item">Remove</span>
-</li>
-<li class="comment-action" data-action="flag">
-<span class="yt-uix-button-menu-item">Flag for spam</span>
-</li>
-<li class="comment-action-block comment-action" data-action="block">
-<span class="yt-uix-button-menu-item">Block User</span>
-</li>
-<li class="comment-action-unblock comment-action" data-action="unblock">
-<span class="yt-uix-button-menu-item">Unblock User</span>
-</li>
-</ul>
-</div>
-</button>
-</span>
-</div>
-</div>
-</div>
-${__a[1]}`;
-
-                return result;
+                
             },
             organizeSubscriptionsData: (da = Object) => {
                 if(!da) return {};
@@ -1632,7 +945,7 @@ ${__a[1]}`;
                     return ytInitialData.header.c4TabbedHeaderRenderer.subscribeButton ? ytInitialData.header.c4TabbedHeaderRenderer.subscribeButton.subscribeButtonRenderer ? ytInitialData.header.c4TabbedHeaderRenderer.subscribeButton.subscribeButtonRenderer.subscribed : false : false;
                 }
                 if(window.location.pathname.split("/")[1].match(/watch/i)) {
-                    return ytInitialData.contents.twoColumnWatchNextResults.results ? ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.find(a => a.videoSecondaryInfoRenderer).videoSecondaryInfoRenderer.subscribeButton.subscribeButtonRenderer ? ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.find(a => a.videoSecondaryInfoRenderer).videoSecondaryInfoRenderer.subscribeButton.subscribeButtonRenderer.subscribed : false : false;
+                    return ytInitialData.contents.twoColumnWatchNextResults.results?.results?.contents?.find(a => a.videoSecondaryInfoRenderer)?.videoSecondaryInfoRenderer?.subscribeButton?.subscribeButtonRenderer?.subscribed;
                 }
             },
             customTags: (data) => {
@@ -2263,30 +1576,6 @@ ${OBJ_CHANCON}
 
                 document.querySelectorAll(`${button} .yt-uix-button-content`).forEach((a) => { a.innerText = text;});
             },
-            uninitCommentsForm: () => {
-                if(!document.querySelector(".comments-post").classList.contains("has-focus")) return;
-                let _dom = document.querySelector(".comments-post");
-                let _com = document.querySelector(".comments-textarea");
-                document.querySelector(".comments-remaining-count").innerText = "500";
-                _dom.classList.remove("has-focus");
-                _com.value = "";
-                _com.textContent = "";
-            },
-            initCommentsForm: () => {
-                if(document.querySelector(".comments-post").classList.contains("has-focus")) return;
-                document.querySelector(".comments-post").classList.add("has-focus");
-                let fu = (e) => {
-                    let l = e.target.textLength;
-                    let L = 500;
-                    let rg = L - l;
-                    if (rg <= 0) {
-                        document.querySelector(".comments-textarea").value = document.querySelector(".comments-textarea").value.substring(0, L);
-                    }
-                    document.querySelector(".comments-remaining-count").innerText = rg<=0?0:rg;
-                };
-                document.querySelector(".comments-textarea").addEventListener("keyup", fu);
-                document.querySelector(".comments-textarea").addEventListener("input", fu);
-            },
             preProPos: () => {
                 let track = (document.cosmicCat.player.getCurrentTime() / document.cosmicCat.player.getDuration() * 100) + "%";
                 document.querySelector(".playbar-scrubbar.track_played").style.width = track;
@@ -2308,55 +1597,18 @@ ${OBJ_CHANCON}
 
                 return `SAPISIDHASH ${TIMESTAMP}_${digest}`;
             },
-            getApi: async(url, json) => {
-                var test = new Promise(async resolve => {
-                    let xhr = new XMLHttpRequest();
-                    xhr.open("POST", "https://www.youtube.com" + url + "?key=" + yt.config_.INNERTUBE_API_KEY + "&prettyPrint=false");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.setRequestHeader("TE", "trailers");
-                    xhr.setRequestHeader("Sec-Fetch-Mode", "same-origin");
-                    xhr.setRequestHeader("Accept-Encoding", "gzip, deflate, br");
-                    xhr.setRequestHeader("Accept-Language", "en-US,en;q=0.5");
-                    xhr.setRequestHeader("X-Goog-AuthUser", "0");
-                    xhr.setRequestHeader("X-Goog-Visitor-Id", yt.config_.INNERTUBE_CONTEXT.client.visitorData);
-                    xhr.setRequestHeader("X-Youtube-Client-Version", yt.config_.INNERTUBE_CONTEXT.client.clientVersion);
-                    xhr.setRequestHeader("X-Youtube-Bootstrap-Logged-In", "true");
-                    xhr.setRequestHeader("X-Youtube-Client-Name", "1");
-                    xhr.setRequestHeader("X-Origin", "https://www.youtube.com");
-                    if (document.cosmicCat.func.getCookie("SAPISID")) {
-                        xhr.setRequestHeader("Authorization", await document.cosmicCat.func.getSApiSidHash());
-                    }
-                    xhr.onload = async () => {
-                        resolve(xhr.response);
-                    };
-                    json = json ? json + "," : "";
-                    let click = JSON.stringify(yt.config_.INNERTUBE_CONTEXT.clickTracking),
-                        client = JSON.stringify(yt.config_.INNERTUBE_CONTEXT.client),
-                        request = JSON.stringify(yt.config_.INNERTUBE_CONTEXT.request),
-                        user = JSON.stringify(yt.config_.INNERTUBE_CONTEXT.user);
-                    let jso = `{${json} context: {clickTracking: ${click}, client: ${client}, clientScreenNonce: "${yt.config_["client-screen-nonce"]}", user: ${user}, request: ${request}}}`;
+            checkLogin: async () => {
+                let isLoggedIn = await document.cosmicCat.AJAX.post("/youtubei/v1/account/account_menu");
 
-                    xhr.send(jso);
-                });
+                BOOL_LOGIN = !isLoggedIn.responseContext.mainAppWebResponseContext.loggedOut;
 
-                let a = await test;
-
-                return JSON.parse(a);
-            },
-            checkLogin: async() => {
-                if(document.cosmicCat.data.name > 1) return true;
-                if(!document.cosmicCat.func.getCookie("APISID")) return false;
-                let isLoggedIn = await document.cosmicCat.func.getApi("/youtubei/v1/account/account_menu");
-                let r = isLoggedIn.responseContext.mainAppWebResponseContext.loggedOut ? false : true;
-
-                if(r == true) {
+                if(BOOL_LOGIN == true) {
                     let popup = isLoggedIn.actions[0].openPopupAction.popup.multiPageMenuRenderer;
                     document.cosmicCat.data.loggedin = true;
                     document.cosmicCat.data.name = popup.header.activeAccountHeaderRenderer.accountName.simpleText;
                     document.cosmicCat.data.pfp = popup.header.activeAccountHeaderRenderer.accountPhoto.thumbnails[0].url;
                     document.cosmicCat.data.link = popup.sections[0].multiPageMenuSectionRenderer.items[0].compactLinkRenderer.navigationEndpoint ? popup.sections[0].multiPageMenuSectionRenderer.items[0].compactLinkRenderer.navigationEndpoint.commandMetadata.webCommandMetadata.url : popup.sections[0].multiPageMenuSectionRenderer.items[0].compactLinkRenderer.serviceEndpoint.commandMetadata.webCommandMetadata.url;
                 }
-                return r;
             },
             parseLang: (la) => {
                 return document.cosmicCat.data.lang[la];
@@ -2366,6 +1618,42 @@ ${OBJ_CHANCON}
                     "DK": "Danmark"
                 };
                 return list[cc];
+            }
+        },
+        AJAX: {
+            post: async function(url, params) {
+                let Authorization = "";
+                params = params ? params + "," : "";
+                let click = JSON.stringify(yt.config_.INNERTUBE_CONTEXT.clickTracking),
+                    client = JSON.stringify(yt.config_.INNERTUBE_CONTEXT.client),
+                    request = JSON.stringify(yt.config_.INNERTUBE_CONTEXT.request),
+                    user = JSON.stringify(yt.config_.INNERTUBE_CONTEXT.user);
+                let body = `{${params} context: {clickTracking: ${click}, client: ${client}, clientScreenNonce: "${yt.config_["client-screen-nonce"]}", user: ${user}, androidSdkVersion: "25", request: ${request}}}`;
+
+                // Check if logged in
+                if (document.cosmicCat.func.getCookie("SAPISID")) {
+                    Authorization = await document.cosmicCat.func.getSApiSidHash();
+                }
+
+                // Fetch
+                const response = await fetch("https://www.youtube.com" + url + "?key=" + yt.config_.INNERTUBE_API_KEY + "&prettyPrint=false", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Goog-AuthUser": "0",
+                        "X-Goog-Visitor-Id": yt.config_.INNERTUBE_CONTEXT.client.visitorData,
+                        "X-Youtube-Client-Version": "17.33",
+                        "X-Youtube-Bootstrap-Logged-In": "true",
+                        "X-Youtube-Client-Name": "ANDROID",
+                        "X-Origin": "https://www.youtube.com",
+                        Authorization
+                    },
+                    body: body
+                })
+                .catch(err => {
+                    console.error("[AJAX] Something went wrong:", err);
+                });
+                return response.json();
             }
         },
         toggleElm: function (params) {
@@ -2384,7 +1672,7 @@ ${OBJ_CHANCON}
             init: async function (continuation) {
                 if (!continuation) return document.cosmicCat.toggleElm("#comments-view");
 
-                let api = await document.cosmicCat.func.getApi("/youtubei/v1/next", `continuation: "${continuation}"`);
+                let api = await document.cosmicCat.AJAX.post("/youtubei/v1/next", `continuation: "${continuation}"`);
                 if (!api) return this.abort();
 
                 if(api.responseContext.mainAppWebResponseContext.loggedOut == false && document.querySelector("#session").getAttribute("data-yes") !== "yes") {
@@ -2394,6 +1682,9 @@ ${OBJ_CHANCON}
 
                 const sortMenuTokens = this.sortMenuTokens(api);
                 let sortedCommentsArray = this.sortCommentsIntoArray(api);
+
+                if (!sortedCommentsArray) return this.abort();
+
                 sortedCommentsArray = sortedCommentsArray.splice(0, 2);
 
                 const comments = this.sortComments(sortedCommentsArray, "top");
@@ -2407,7 +1698,7 @@ ${OBJ_CHANCON}
             load: async function (continuation) {
                 if (!continuation) return document.cosmicCat.toggleElm("#comments-view");
 
-                let api = await document.cosmicCat.func.getApi("/youtubei/v1/next", `continuation: "${continuation}"`);
+                let api = await document.cosmicCat.AJAX.post("/youtubei/v1/next", `continuation: "${continuation}"`);
                 if (!api) return this.abort();
 
                 let sortedCommentsArray = this.sortCommentsIntoArray(api);
@@ -2421,12 +1712,15 @@ ${OBJ_CHANCON}
                 document.cosmicCat.toggleElm(".comment-list.all");
                 document.cosmicCat.toggleElm("#comments-loading");
             },
+            abort: function() {
+                document.cosmicCat.toggleElm("#comments-loading");
+            },
             sortComments: function (params, am) {
                 let result = {result: "", con: ""};
                 for (let i = 0; i < params.length; i++) {
                     if (params[i].commentThreadRenderer) {
                         if (am == "top" || params[i].commentThreadRenderer.renderingPriority !== "RENDERING_PRIORITY_PINNED_COMMENT"){
-                            let ap = document.cosmicCat.func.organizeCommentData(params[i].commentThreadRenderer.comment.commentRenderer);
+                            let ap = document.cosmicCat.Comments.organizeData(params[i].commentThreadRenderer.comment.commentRenderer);
                             result.result += ap;
                         }
                     }
@@ -2490,11 +1784,98 @@ ${OBJ_CHANCON}
                     }
                 }
             },
+            organizeData: function (da) {
+                if(!da) return {};
+                let author = da.authorText.simpleText;
+                let id = da.commentId;
+                let text_ = da.contentText.runs;
+                let text = "";
+                let time = da.publishedTimeText.runs[0].text;
+                let url = da.authorEndpoint.browseEndpoint.canonicalBaseUrl;
+                let authorId = da.authorEndpoint.browseEndpoint.browseId;
+                let likes = da.voteCount ? `<span dir="ltr" class="comments-rating-positive" title="">
+${da.voteCount ? da.voteCount.simpleText : ""}
+<img class="comments-rating-thumbs-up" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif">
+</span>` : "";
+                //document.cosmicCat.func.escapeHtml(da.contentText.runs[0].text);
+                for (let i = 0; i < text_.length; i++) {
+                    text += text_[i].text;
+                }
+
+                text = text.replace(/\n|\r/g, "<br/>");
+
+                let __a = [[], []];
+
+                if(da.cum !== "a") {
+                    __a[0] = `<li class="comment yt-tile-default" data-author-id="${authorId}" data-id="${id}" data-score="-1">`;
+                    __a[1] = `</li>`;
+                }
+
+                let result = `${__a[0]}<div class="comment-body">
+<div class="content-container">
+<div class="content">
+<div class="comment-text" dir="ltr">
+<p>${text}</p>
+</div>
+<p class="metadata">
+<span class="author">
+<a href="${url}" class="yt-uix-sessionlink yt-user-name" data-sessionlink="" dir="ltr">${author}</a>
+</span>
+<span class="time" dir="ltr">
+<a dir="ltr" href="https://www.youtube.com/watch?v=${id}&lc=${id}">${time}</a>
+</span>
+${likes}
+</p>
+</div>
+<div class="comment-actions">
+<span class="yt-uix-button-group">
+<button type="button" class="start comment-action-vote-up comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Up" data-action="vote-up" data-tooltip-show-delay="300" role="button">
+<span class="yt-uix-button-icon-wrapper">
+<img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-up" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="Vote Up">
+<span class="yt-valign-trick"></span>
+</span>
+</button><button type="button" class="end comment-action-vote-down comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Down" data-action="vote-down" data-tooltip-show-delay="300" role="button">
+<span class="yt-uix-button-icon-wrapper">
+<img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-down" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="Vote Down">
+<span class="yt-valign-trick"></span>
+</span>
+</button>
+</span>
+<span class="yt-uix-button-group">
+<button type="button" class="start comment-action yt-uix-button yt-uix-button-default" onclick=";return false;" data-action="reply" role="button">
+<span class="yt-uix-button-content">Reply </span>
+</button><button type="button" class="end yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
+<img class="yt-uix-button-arrow" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="">
+<div class=" yt-uix-button-menu yt-uix-button-menu-default" style="display: none;">
+<ul>
+<li class="comment-action-remove comment-action" data-action="remove">
+<span class="yt-uix-button-menu-item">Remove</span>
+</li>
+<li class="comment-action" data-action="flag">
+<span class="yt-uix-button-menu-item">Flag for spam</span>
+</li>
+<li class="comment-action-block comment-action" data-action="block">
+<span class="yt-uix-button-menu-item">Block User</span>
+</li>
+<li class="comment-action-unblock comment-action" data-action="unblock">
+<span class="yt-uix-button-menu-item">Unblock User</span>
+</li>
+</ul>
+</div>
+</button>
+</span>
+</div>
+</div>
+</div>
+${__a[1]}`;
+
+                return result;
+            },
             next: async function (continuation, number) {
                 if (!continuation) return document.cosmicCat.toggleElm("#comments-view");
                 document.cosmicCat.toggleElm("#comments-loading");
 
-                let api = await document.cosmicCat.func.getApi("/youtubei/v1/next", `continuation: "${continuation}"`);
+                let api = await document.cosmicCat.AJAX.post("/youtubei/v1/next", `continuation: "${continuation}"`);
                 if (!api) return this.abort();
 
                 let sortedCommentsArray = this.sortCommentsIntoArray(api);
@@ -2508,8 +1889,728 @@ ${OBJ_CHANCON}
                 document.querySelector(".comment-list.all").innerHTML = comments.result;
 
                 document.cosmicCat.toggleElm("#comments-loading");
+            },
+            Form: {
+                init: function() {
+                    if(document.querySelector(".comments-post").classList.contains("has-focus")) return;
+                    document.querySelector(".comments-post").classList.add("has-focus");
+                    let fu = (e) => {
+                        let l = e.target.textLength;
+                        let L = 500;
+                        let rg = L - l;
+                        if (rg <= 0) {
+                            document.querySelector(".comments-textarea").value = document.querySelector(".comments-textarea").value.substring(0, L);
+                        }
+                        document.querySelector(".comments-remaining-count").innerText = rg<=0?0:rg;
+                    };
+                    document.querySelector(".comments-textarea").addEventListener("keyup", fu);
+                    document.querySelector(".comments-textarea").addEventListener("input", fu);
+                },
+                uninit: function() {
+                    if(!document.querySelector(".comments-post").classList.contains("has-focus")) return;
+                    let _dom = document.querySelector(".comments-post");
+                    let _com = document.querySelector(".comments-textarea");
+                    document.querySelector(".comments-remaining-count").innerText = "500";
+                    _dom.classList.remove("has-focus");
+                    _com.value = "";
+                    _com.textContent = "";
+                }
             }
+        },
+        Watch: {
+            likeVideo: (ml) => {
+                if(BOOL_LOGIN !== true) {
+                    if (window.location.pathname.split("/")[1] !== "watch") {
+                        document.cosmicCat.toggleElm("#channel-like-logged-out");
+                    }
+                    return;
+                }
 
+                var update = (math) => {
+                    if (window.location.pathname.split("/")[1] == "watch") {
+                        var equ = parseInt(document.querySelector("span.likes").innerText.replace(/,/g, ""));
+                        var equ2 = parseInt(document.querySelector("span.dislikes").innerText.replace(/,/g, ""));
+                        switch (math) {
+                            case 0:
+                                equ -= 1;
+                                equ2 += 1;
+                                break;
+                            case 1:
+                                equ += 1;
+                                equ2 -= 1;
+                                break;
+                        }
+                        document.querySelector("span.likes").innerText = equ.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        if(document.querySelector("#watch-unlike").classList.contains("unliked")) {
+                            document.querySelector("span.dislikes").innerText = equ2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        }
+                    }
+                };
+                if(document.querySelector("#watch-like").classList.contains("liked")) {
+                    update(0);
+                    document.cosmicCat.AJAX.post("/youtubei/v1/like/removelike", `target:{videoId: "${ml}"}`);
+                    return document.querySelector("#watch-like").classList.remove("liked");
+                }
+                update(1);
+                document.cosmicCat.AJAX.post("/youtubei/v1/like/like", `target:{videoId: "${ml}"}`);
+                document.querySelector("#watch-like").classList.add("liked");
+                document.querySelector("#watch-unlike").classList.remove("unliked");
+            }
+        },
+        player: {
+            Create: async (videoId, time) => {
+                var ELEMENT = document.querySelector("#video-player");
+                var api = await document.cosmicCat.AJAX.post("/youtubei/v1/player", `videoId: "${videoId}"`);
+
+                var style = document.createElement("style");
+                    style.setAttribute("class", "player-style");
+
+                ELEMENT.innerHTML += `<div class="player" tabindex="0" data-status="${api?.playabilityStatus?.status}" data-type="${api?.playabilityStatus?.liveStreamability ? "live" : "video"}">
+<div class="video-topbar">
+<div class="video-topbar-container">
+<div class="video-title">
+<span id="video-title-text">${api?.videoDetails?.title}</span>
+</div>
+</div>
+</div>
+<div class="video-container">
+<div id="video-error">
+<img class="meh" src="//s.ytimg.com/yts/img/meh7-vflGevej7.png">
+<div class="content">
+<h1 id="error-message" class="message">${api?.playabilityStatus?.errorScreen ? api?.playabilityStatus?.errorScreen?.playerErrorMessageRenderer?.reason?.simpleText : api?.playabilityStatus?.reason}</h1>
+<div id="error-submessage" class="submessage"> Sorry about that.</div>
+</div>
+</div>
+<div id="video-main-content">
+<video id="_player_video" poster="//i.ytimg.com/vi/${api?.videoDetails?.videoId}/hqdefault.jpg">
+<source src="${api?.streamingData?.formats?.[0]?.url}" type="video/mp4">
+</video>
+</div>
+<div class="video-blank"></div>
+</div>
+<div class="video-scrubbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-canmouse="false">
+<div class="dddd" data-canmouse="false" style="height: inherit;width: 640px;z-index: 33;position: absolute;"></div>
+<span class="playbar-scrubbar track_played"></span>
+<span class="playbar-scrubbar track_handle"></span>
+</div>
+<div class="black_line"></div>
+<div class="video-playbar">
+<ul class="playbar-controls left">
+<li class="playbar-controls_icon playbar-controls_play" data-state="0">
+<i class="playbar-icon playbar-icon_play"></i>
+</li><div class="playbar-volume_container" data-name="volume" data-type="tooltip" data-tooltip="${localizeString("player.mute")}">
+<li class="playbar-controls_icon playbar-controls_volume" data-state="3">
+<i class="playbar-icon playbar-icon_volume"></i>
+</li>
+<div class="playbar-volume-container">
+<div class="playbar-volume-slider progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-canmouse="false">
+<div class="ddde" data-canmouse="false" style="height: inherit;width: 53px;z-index: 33;position: absolute;"></div>
+<span class="playbar-volume track_played"></span>
+<span class="playbar-volume track_notplayed"></span>
+<span class="playbar-volume track_handle"></span>
+</div>
+</div>
+</div>
+</ul>
+<div class="playbar-timestamp_container">
+<span class="playbar-timestamp">
+<a id="timestamp_current">0:00</a> / <a id="timestamp_total">9:99</a>
+</span>
+</div>
+<ul class="playbar-controls right">
+<li class="playbar-controls_icon playbar-controls_cc">
+<i class="playbar-icon playbar-icon_cc"></i>
+</li><li class="playbar-controls_icon playbar-controls_settings" data-name="settings" data-type="tooltip" data-tooltip="${localizeString("player.quality")}">
+<i class="playbar-icon playbar-icon_settings"></i>
+</li><li class="playbar-controls_icon playbar-controls_watchlater" data-name="watchlater" data-type="tooltip" data-tooltip="${localizeString("personal.watchlater")}">
+<i class="playbar-icon playbar-icon_watchlater"></i>
+</li><li class="playbar-controls_icon playbar-controls_fullscreen" data-name="fullscreen" data-state="0" data-type="tooltip" data-tooltip="${localizeString("player.fullscreen")}">
+<i class="playbar-icon playbar-icon_fullscreen"></i>
+</li>
+</ul>
+</div>
+</div>`;
+let script = `body {margin:0}
+* {
+    --lld: url(${document.cosmicCat.data.playbarBg});
+    --lll: linear-gradient(0deg, rgba(29,29,29,1) 0%, rgba(49,49,49,1) 100%);
+    --llr: linear-gradient(0deg, rgba(9,9,9,1) 0%, rgba(29,29,29,1) 100%);
+    --llRED: url(${document.cosmicCat.data.scrubBarRedSheet});
+    --llGRAY: url(${document.cosmicCat.data.scrubBarGraySheet});
+    --texture-playbar: url(${document.cosmicCat.data.playerSheetB}) no-repeat;
+}
+.playmenu-container {
+    display: none;
+}
+#video-player {
+    display: block;
+    width: 640px;
+    height: 390px;
+    background-color: black;
+}
+#video-player .player {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+#video-player .video-topbar {
+width: inherit;
+overflow: hidden;
+position: absolute;
+z-index: 1;
+height: 28px;
+user-select: none;
+}
+#video-player:hover .video-topbar-container {
+top: 0px;
+transition: top 0s ease-in;
+}
+#video-player .video-topbar-container {
+background: linear-gradient(0deg, rgb(13, 13, 13) 0%, rgb(40, 40, 40) 100%);
+width: inherit;
+top: -30px;
+transition: top .6s cubic-bezier(1,0,1,1);
+position: absolute;
+}
+#video-player .video-title {
+float: left;
+padding: 8px 13px;
+color: white;
+}
+#video-player .video-topbar-buttons {
+display: flex;
+height: 25px;
+line-height: 25px;
+overflow: hidden;
+position: relative;
+user-select: none;
+border-top: 1px solid #484646;
+border-bottom: 1px solid #0b0b0b;
+background: var(--lld);
+z-index: 3;
+}
+#video-player .video-container {
+    height: 360px;
+    width: inherit;
+    position: relative;
+    z-index: 0;
+}
+#video-player .black_line {
+    height: 1px;
+    width: inherit;
+    z-index: 1;
+    background: black;
+}
+#video-player:fullscreen .video-container {
+    height: 98%;
+}
+#video-player:fullscreen #video-main-content {
+    height: 100%;
+}
+#video-player #video-main-content {
+    position: relative;
+    z-index: -1;
+    width: inherit;
+    height: inherit;
+}
+#video-player video {
+width: inherit;
+height: inherit;
+}
+.player[data-status^="OK"] #video-error,
+.player[data-status^="ERROR"] #video-main-content,
+.player[data-status^="ERROR"] .video-topbar,
+.player[data-status^="ERROR"] .video-scrubbar,
+.player[data-status^="ERROR"] .black_line,
+.player[data-status^="ERROR"] .video-playbar {
+display: none !important;
+}
+.player[data-status^="ERROR"] #video-error,
+.player[data-status^="OK"] #video-main-content {
+display: block;
+}
+#video-player #video-error {
+float: left;
+background: #262626;
+position: relative;
+text-align: left;
+font-size: 13px;
+line-height: 1.2;
+background-image: linear-gradient(to bottom,#383838 0,#131313 100%);
+height: 390px;
+width: 640px;
+}
+#video-player #video-error .meh {
+position: absolute;
+width: 140px;
+height: 100px;
+left: 50%;
+top: 60%;
+margin-left: -70px;
+margin-top: -50px;
+}
+#video-player #video-error .content {
+position: absolute;
+top: 25px;
+left: 25px;
+bottom: 50px;
+right: 25px;
+}
+#video-player #video-error #error-message {
+margin: 0 -5px 15px;
+padding: 0 5px 14px;
+border-bottom: 1px solid #888;
+font-size: 19px;
+font-weight: normal;
+text-shadow: 0 2px 2px #000;
+}
+#video-player #video-error #error-submessage {
+text-shadow: 0 1px 1px #000;
+}
+#video-player .video-blank {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+#video-player .video-scrubbar {
+background: var(--lld);
+cursor: pointer;
+height: 3px;
+position: relative;
+transition: margin-top .6s cubic-bezier(1,0,1,1), height .6s cubic-bezier(1,0,1,1);
+z-index: 4;
+}
+#video-player:hover .video-scrubbar {
+transition: .1s;
+height: 8px;
+margin-top: -5px;
+}
+#video-player:hover .playbar-scrubbar.track_handle {
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0s, opacity 0s;
+}
+#video-player .playbar-scrubbar.track_played {
+height: inherit;
+background: var(--llRED);
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+transition: max-height 1s;
+}
+#video-player .playbar-scrubbar.track_handle {
+    background: var(--texture-playbar);
+    background-position: -84px -185px;
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: -5px -7.5px;
+    border-radius: 9px;
+    opacity: 0;
+    transition: transform 1s, opacity 1s;
+    transform: scale(0.3);
+    z-index: 100;
+    position: absolute;
+}
+#video-player .playbar-scrubbar.track_handle:hover {
+background-position: -84px -163px;
+}
+#video-player .video-playbar {
+    display: flex;
+    background: var(--lld);
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    width: inherit;
+    z-index: 3;
+}
+#video-player .playbar-controls {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: inherit;
+    line-height: inherit;
+    display: flex;
+}
+#video-player .playbar-controls_icon {
+    width: 30px;
+    display: flex;
+    text-align: center;
+    border: 0;
+    position: relative;
+    cursor: pointer;
+    background: var(--lld);
+    z-index: 1;
+    margin: 0px 1px;
+}
+#video-player .playbar-controls_icon::before, #video-player .playbar-controls_icon::after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: inherit
+}
+#video-player .playbar-controls_icon::before {
+    left: -1px;
+    background: var(--lll);
+    height: 25px;
+}
+#video-player .playbar-controls_icon::after {
+    right: -1px;
+    background: var(--llr);
+    height: 25px;
+}
+#video-player .playbar-icon {
+    background: var(--texture-playbar);
+    margin: auto;
+}
+#video-player .playbar-controls_play .playbar-icon.playbar-icon_play {
+width: 13px;
+height: 17px;
+}
+#video-player .playbar-controls_play[data-state^="1"] .playbar-icon.playbar-icon_play {
+background-position: 0px -22px;
+}
+#video-player .playbar-controls_play[data-state^="0"]:hover .playbar-icon.playbar-icon_play {
+    background-position: -21px -0px;
+}
+#video-player .playbar-controls_play[data-state^="1"]:hover .playbar-icon.playbar-icon_play {
+    background-position: -19px -22px;
+}
+#video-player .playbar-controls_volume[data-state^="0"] .playbar-icon.playbar-icon_volume {
+    background-position: 4px -105px;
+}
+#video-player .playbar-volume_container:hover .playbar-controls_volume[data-state^="0"] .playbar-icon.playbar-icon_volume {
+    background-position: -24px -105px;
+}
+#video-player .playbar-controls_volume[data-state^="1"] .playbar-icon.playbar-icon_volume {
+    background-position: 4px -124px;
+}
+#video-player .playbar-volume_container:hover .playbar-controls_volume[data-state^="1"] .playbar-icon.playbar-icon_volume {
+    background-position: -24px -124px;
+}
+#video-player .playbar-controls_volume[data-state^="2"] .playbar-icon.playbar-icon_volume {
+    background-position: 4px -143px;
+}
+#video-player .playbar-volume_container:hover .playbar-controls_volume[data-state^="2"] .playbar-icon.playbar-icon_volume {
+    background-position: -24px -143px;
+}
+#video-player .playbar-controls_volume[data-state^="3"] .playbar-icon.playbar-icon_volume {
+    background-position: 4px -162px;
+}
+#video-player .playbar-volume_container:hover .playbar-controls_volume[data-state^="3"] .playbar-icon.playbar-icon_volume {
+    background-position: -24px -162px;
+}
+#video-player .playbar-icon.playbar-icon_settings {
+    background-position: 0px -42px;
+    height: 20px;
+    width: 16px;
+}
+#video-player .playbar-controls_settings:hover .playbar-icon.playbar-icon_settings {
+background-position: -24px -42px;
+}
+#video-player .playbar-icon.playbar-icon_watchlater {
+    background-position: 0px -66px;
+    height: 14px;
+    width: 13px;
+}
+#video-player .playbar-icon.playbar-icon_cc {
+    background-position: 0px -85px;
+    height: 13px;
+    width: 17px;
+}
+#video-player .playbar-icon.playbar-icon_fullscreen {
+    background-position: 0px -181px;
+    height: 17px;
+    width: 20px;
+}
+#video-player .playbar-controls_fullscreen:hover .playbar-icon.playbar-icon_fullscreen {
+background-position: -28px -181px;
+}
+#video-player .playbar-timestamp_container {
+    margin: 0 1px;
+    border: 0;
+    position: relative;
+    height: 26px;
+    line-height: 26px;
+    z-index: 2;
+    background: var(--lld);
+    width: 80px;
+}
+#video-player .playbar-timestamp_container::before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: inherit
+}
+#video-player .playbar-timestamp_container::before {
+    background: var(--lll);
+    left: -1px;
+}
+#video-player a {
+    color: white;
+    cursor: default;
+    text-decoration: none;
+}
+#video-player .playbar-volume-container {
+display: inline-block;
+width: 66px;
+height: 26px;
+line-height: 26px;
+-webkit-transition: margin .2s cubic-bezier(0.4,0,1,1),width .2s cubic-bezier(0.4,0,1,1);
+transition: margin .2s cubic-bezier(0.4,0,1,1),width .2s cubic-bezier(0.4,0,1,1);
+cursor: pointer;
+outline: 0;
+}
+#video-player .playbar-volume_container {
+display: flex;
+width: 32px;
+transition: width .8s;
+}
+#video-player .playbar-volume_container:hover {
+width: 98px;
+transition: width .1s;
+}
+#video-player .playbar-volume-slider {
+width: 53px;
+height: 25px;
+border-radius: 4px;
+display: flex;
+margin: 0px 6px;
+}
+#video-player .playbar-volume {
+border-radius: 4px;
+height: 4px;
+display: block;
+position: relative;
+top: 50%;
+transform: translate(0, -50%);
+}
+#video-player .playbar-volume.track_played {
+background: red;
+width: 100%;
+}
+#video-player .playbar-volume.track_notplayed {
+background: black;
+}
+#video-player .playbar-volume.track_handle {
+height: 15px;
+width: 6px;
+display: block;
+border-radius: 4px;
+background: white;
+position: relative;
+margin-left: -55px;
+left: 100%;
+}
+#video-player .playbar-controls_play {
+    width: 55px;
+}
+#video-player .playbar-icon_volume {
+    height: 16px;
+    width: 30px;
+}
+#video-player #playbar-seek {
+    -webkit-appearance: none;
+    width: inherit;
+    height: 4px;
+    outline: none;
+    max-width: 53px;
+}
+#video-player .playbar-controls_play::before {
+    background: none;
+}
+#video-player .playbar-controls_cc::before {
+    background: none;
+}
+#video-player .playbar-controls_fullscreen {
+    width: 29px;
+}
+#video-player .playbar-controls_fullscreen::after {
+    background: none;
+}
+#video-player .playbar-timestamp {
+    font-size: 10px;
+    color: gray;
+    float: left;
+    margin-left: 6px;
+}
+#video-player #timestamp_total {
+    color: gray;
+}
+
+.hid {
+    display: none !important;
+}
+.deez::after {
+margin-left: 15px !important;
+}
+.right {
+    margin-left: auto !important;
+}`;
+                script = script.replace(/(?:\r\n|\r|\n)/g, "");
+                style.innerText = script;
+                ELEMENT.appendChild(style);
+
+                document.cosmicCat.player._dom = document.querySelector("#_player_video");
+
+                function _a(b, c) {
+                    var d = b.classList[1].split("_")[1];
+
+                    document.cosmicCat.player[d](b);
+                }
+
+                YabaiComponent.addHandler("click", "playbar-controls_icon", _a);
+
+                (() => {
+                    var timm = time ? `'time':` + time + "," : ``;
+                    var a = document.createElement("script");
+                    var script = `
+var progress;
+let canMouse = false;
+let dur = 0;
+/* Called by YouTube API */
+
+/* Keyboard shortcuts for the player */
+document.querySelector("#video-player").addEventListener("keydown", (e) => {
+if (!e) return;
+e.preventDefault();
+switch (e.key) {
+case " ":
+document.querySelector(".playbar-controls_play").click();
+break;
+case "f":
+document.querySelector(".playbar-controls_fullscreen").click();
+break;
+case "ArrowRight":
+document.cosmicCat.player.seekBy(5);
+break;
+case "ArrowLeft":
+document.cosmicCat.player.seekBy(-5);
+break;
+case "ArrowUp":
+document.cosmicCat.func.setVolume(document.cosmicCat.player.getVolume() + 5);
+break;
+case "ArrowDown":
+document.cosmicCat.func.setVolume(document.cosmicCat.player.getVolume() - 5);
+break;
+};
+});
+/* New click event */
+document.querySelector("movie-player").addEventListener("click", e => {
+const target = e.target.className;
+switch (true) {
+case /video-blank|playbar-icon_play|playbar-controls_play/g.test(target):
+document.cosmicCat.func.playPause(document.querySelector(".playbar-controls_play").getAttribute("data-state"));
+break;
+case /playbar-icon_volume|playbar-controls_volume/g.test(target):
+document.cosmicCat.func.mutePlayer(document.querySelector(".playbar-controls_volume").getAttribute("data-state"));
+break;
+case /playbar-icon_fullscreen|playbar-controls_fullscreen/g.test(target):
+document.cosmicCat.func.fullscreenPlayer(document.querySelector(".playbar-controls_fullscreen").getAttribute("data-state"));
+break;
+};
+});
+/* Mousedown event */
+document.querySelector("movie-player").addEventListener("mousedown", e => {
+let tar = e.target;
+if (tar.classList[1] == "track_handle") {
+tar = e.target.parentElement;
+}
+if (tar.dataset.canmouse == "false") { tar.dataset.canmouse = true; };
+if (tar.classList[0] == "playbar-scrubbar") { document.cosmicCat.player.pauseVideo(); };
+});
+/* Mouseout event */
+document.addEventListener("mouseup", () => {
+if (!document.querySelector("[data-canmouse='true']")) return;
+document.querySelector("[data-canmouse='true']").dataset.canmouse = false;
+progress = setInterval(document.cosmicCat.func.preProPos, 1);
+document.cosmicCat.player.playVideo();
+});
+/* Move event */
+const getOffset = (e) => {
+let offset = Math.round((e.pageX - e.currentTarget.offsetLeft) / e.currentTarget.offsetWidth * 100);
+
+if (offset > 100 || offset < 0) return;
+
+return offset;
+};
+
+const setValuenow = (e) => {
+let get = e[0].target.parentElement;
+let tar = e[0].target.attributes["aria-valuenow"].nodeValue;
+
+if (e[0].target.className == "track_handle") {
+get = get.parentElement;
+};
+
+if (tar > 100 || tar < 0) return;
+
+if (get.className == "video-scrubbar") {
+document.cosmicCat.player.seekBy(dur);
+};
+
+get.children[1].style.width = tar + "%";
+get.children[2].style.left = tar + "%";
+};
+
+new MutationObserver(setValuenow).observe(document.querySelector(".dddd"), { attributes: true });
+new MutationObserver(setValuenow).observe(document.querySelector(".ddde"), { attributes: true });
+
+document.querySelector("#video-player").addEventListener("mousemove", e => {
+if (!document.querySelector(".dddd[data-canmouse='true']")) return;
+clearInterval(progress);
+document.querySelector(".dddd[data-canmouse='true']").setAttribute("aria-valuenow", getOffset(e));
+dur = ((e.pageX - e.currentTarget.offsetLeft) / document.querySelector("#video-player").clientWidth * document.cosmicCat.player.getDuration());
+});
+document.querySelector(".ddde").addEventListener("mousemove", e => {
+if (!document.querySelector(".ddde[data-canmouse='true']")) return;
+document.querySelector(".ddde[data-canmouse='true']").setAttribute("aria-valuenow", getOffset(e));
+document.cosmicCat.func.setVolume(getOffset(e));
+});
+var playVideo = () => {
+document.querySelector(".playbar-controls_play").setAttribute("data-state", "1");
+};
+var onPlayerReady = async () => {
+document.querySelector("#timestamp_total").innerText = document.cosmicCat.func.calculateLength(parseInt(document.cosmicCat.player.getDuration()));
+document.querySelector("#video-title-text").innerText = document.cosmicCat.player.videoTitle;
+progress = setInterval(document.cosmicCat.func.preProPos, 1);
+setInterval(document.cosmicCat.func.trackCurrent);
+
+document.querySelector(".video-blank").style = "background: none;";
+};
+var onStateChange = (e) => {
+switch (e.data) {
+case 1:
+playVideo();
+break;
+case 0:
+document.querySelector(".playbar-controls_play").setAttribute("data-state", "0");
+};
+};`;
+                    script = script.replace(/(?:\r\n|\r|\n)/g, "");
+                    a.innerText = script;
+                    //ELEMENT.append(a);
+                })();
+            },
+            play: (dom) => {
+                switch (dom.dataset.state) {
+                    case "0":
+                        document.cosmicCat.player._dom.play();
+                        dom.dataset.state = 1;
+                        break;
+                    case "1":
+                        document.cosmicCat.player._dom.pause();
+                        dom.dataset.state = 0;
+                        break;
+                }
+            }
         },
         picker: {
             set: function (type, param) {
@@ -2556,6 +2657,15 @@ ${OBJ_CHANCON}
             }
         }
     };
+
+    if(window.location.pathname.split("/")[1].match(/watch|channel|c|user/g)){
+        document.cosmicCat.func.waitForElm("video").then((elm) => {
+            elm.pause();
+            elm.src="";
+            elm.play();
+            elm.parentNode.removeChild(elm);
+        });
+    }
 
     function Ciulinations()
     {
@@ -2611,7 +2721,7 @@ ${OBJ_CHANCON}
                 i18n = i18n.replace(/%s/g, `<span class="feed-item-owner"><a href="${DOM?.url}" class="yt-uix-sessionlink yt-user-name" dir="ltr">${DOM?.owner.text}</a></span>`);
                 break;
             case "watch.by":
-                i18n = (window.location.pathname.split("/")[1] == "results") ? i18n.replace(/%s/g, `<a href="https://www.youtube.com${DOM?.url}" class="yt-user-name" dir="ltr">${DOM?.owner.text}</a>`) : i18n.replace(/%s/g, `<span class="yt-user-name" dir="ltr">${DOM?.owner.text}</span>`);
+                i18n = (window.location.pathname.split("/")[1] == "results") ? i18n.replace(/%s/g, `<a href="https://www.youtube.com${DOM?.url}" class="yt-uix-sessionlink yt-user-name" dir="ltr">${DOM?.owner.text}</a>`) : i18n.replace(/%s/g, `<span class="yt-user-name" dir="ltr">${DOM?.owner.text}</span>`);
                 break;
             case "stats.likesdislikes":
                 i18n = i18n.replace(/%s/g, `<span class="likes"></span>`);
@@ -2636,12 +2746,10 @@ ${OBJ_CHANCON}
         document.cosmicCat.func.waitForElm(".ytp-gradient-top").then((elm) => {elm.parentNode.removeChild(elm);});
         return;
     }
-    if(window.location.pathname.split("/")[1] == "watch"){
-        document.cosmicCat.func.waitForElm(".video-stream.html5-main-video").then((elm) => {elm.pause();elm.src="";elm.play();elm.parentNode.removeChild(elm);});
-    }
     async function buildYouTube() {
         document.cosmicCat.Storage.init();
-        console.debug("A4");
+
+
         var DOMHTML = document.querySelector("html");
         var TIMEDATE = new Date();
         var ARR_MONTH = (TIMEDATE.getMonth() < 10) ? "0" + TIMEDATE.getMonth() : TIMEDATE.getMonth();
@@ -2649,20 +2757,34 @@ ${OBJ_CHANCON}
         var VALUE_DATE = TIMEDATE.getFullYear() + "" + ARR_MONTH + "" + ARR_DATE;
         var VALUE_LANG = document.cosmicCat.Storage.get("lang");
         var VALUE_TITLE = "YouTube - Broadcast Yourself.";
+
         DOMHTML.removeAttribute("style");
         DOMHTML.removeAttribute("standardized-themed-scrollbar");
         DOMHTML.setAttribute("dir", "ltr");
         DOMHTML.setAttribute("xmlns:og", "https://opengraphprotocol.org/schema/");
         DOMHTML.setAttribute("lang", VALUE_LANG.value);
+
         document.querySelector("head").innerHTML = "<title></title>";
+
         var DOMHEAD = document.querySelector("head");
         document.title = VALUE_TITLE;
         DOMHEAD.innerHTML += '<link rel="icon" href="//s.ytimg.com/yt/favicon-refresh-vfldLzJxy.ico">';
         DOMHEAD.innerHTML += '<link rel="shortcut icon" href="//s.ytimg.com/yt/favicon-refresh-vfldLzJxy.ico">';
         DOMHEAD.innerHTML += '<link id="yt-core" rel="stylesheet" href="//s.ytimg.com/yts/cssbin/www-core-vfleLhVpH.css">';
-        await document.cosmicCat.func.checkLogin().then(afs => {BOOL_LOGIN = afs;});
+
         var DOMBODY = document.body;
         DOMBODY.innerHTML = '<div id="ee" class="hid"></div>';
+
+        var YTCORE = document.createElement("script");
+        YTCORE.src = "//s.ytimg.com/yts/jsbin/www-core-vfloDTB4f.js";
+        //DOMBODY.appendChild(YTCORE);
+
+        var SEARCH = document.createElement("script");
+        SEARCH.src = "//s.ytimg.com/yts/jsbin/www-searchbox-vflOEotgN.js";
+        DOMBODY.appendChild(SEARCH);
+
+        await document.cosmicCat.func.checkLogin();
+
         var SUPERDOM = document.createElement("div");
         var SUPERDUM = document.createElement("div");
         SUPERDUM.setAttribute("id", "body-container");
@@ -2670,13 +2792,34 @@ ${OBJ_CHANCON}
         DOMBODY.setAttribute("class", `date-${VALUE_DATE} ${VALUE_LANG.value} ltr ytg-old-clearfix guide-feed-v2 gecko gecko-16`);
         DOMBODY.setAttribute("dir", "ltr");
         DOMHTML.appendChild(DOMBODY);
-        var STYLE_DARK = `<style>html[dark^="true"] body {background: #000} .browse-container, #content {background: #201e1e !important} #masthead-container {background: #ebebeb !important}</style>`;
+
+        var STYLE_DARK = `<style>
+        * {--dark-noise: url(${document.cosmicCat.data.darkNoiseBg}); --shadow-color: #110f0f; --nero-color-primary: #201e1e; --nero-color-secondary: #242323; --gray-color: #a2a2a2; --silver-color: #bfbfbf; --night-rider-color: #2f2f2f; --white-color: #fff; --black-color: #000;}
+        body, #masthead-container {background: var(--dark-noise) !important}
+        #masthead-search-terms input {background: var(--black-color) !important; color: var(--white-color);}
+        #feed, #feed-background { background: var(--nero-color-primary) !important;}
+        .feed-item-container:hover {background: var(--nero-color-secondary) !important;}
+        #masthead-nav a, #masthead-user a, .metadata .view-count, .metadata .view-count, .feed-item-actions-line, .heading .header-container, .browse-item-content h3 a {color: var(--silver-color) !important;}
+        .feed-item-container .feed-item-main, .feed-item-container:hover {border-bottom: 1px solid var(--night-rider-color) !important;}
+        .feed-item-container:hover {border-top: 1px solid var(--night-rider-color) !important;}
+        #footer ul {text-shadow: none;}
+        #masthead-user-expander .yt-uix-expander-head, #masthead-gaia-user-wrapper, #masthead-gaia-photo-wrapper {border: 1px solid transparent;}
+        #eow-title, .watch-view-count, #watch-uploader-info, .title, .yt-uix-button-content {color: var(--silver-color) !important;}
+        #watch-description .expand, #watch-description .collapse {filter: invert();}
+        #search-btn .yt-uix-button-content {filter: invert(); color: var(--gray-color);}
+        #masthead-expanded-container {box-shadow: inset 0 5px 5px var(--shadow-color);}
+        img#logo {background: url(${document.cosmicCat.data.darkyoutubelogo}) !important; background-size: 100px !important;}
+        p {color: var(--white-color);}
+        #masthead-expanded-loading-message {color: var(--white-color) !important;}
+        #masthead-search-terms, #search-btn {border-color: #262626 !important; background: none !important;}
+        #search-header h2, .yt-lockup-content * {color: var(--white-color) !important;}
+        .yt-uix-button-default, .yt-uix-button-subscription, .yt-uix-button-panel:hover .yt-uix-button-text, body .yt-uix-button-default[disabled] {box-shadow: none !important; text-shadow: 0 1px 0 #000; border-color: #262626; background-image: linear-gradient(to bottom,#000 0,#202020 100%) !important;}
+        </style>`;
         //DOMHEAD.innerHTML += STYLE_DARK;
 
         let OBJ_MASTH = "";
         let OBJ_USER = "";
         if(BOOL_LOGIN === true) {
-            console.debug("A5");
             OBJ_MASTH = `<div id="masthead-expanded" class="hid">
 <div id="masthead-expanded-container" class="with-sandbar">
 <div id="masthead-expanded-menus-container">
@@ -2866,6 +3009,7 @@ ${mhtml}
 </div>
 </div>`;
                 }
+
                 document.cosmicCat.func.waitForElm("#page").then(async elm => {
                     let categories = ["technoblade", "trending", "popular", "music", "live", "gadgets", "news", "sports", "education", "howto"];
                     for (let i = 0; i < categories.length; i++) {
@@ -2881,6 +3025,7 @@ ${mhtml}
                     }
                     document.querySelector(".cockie").innerHTML = c;
                 });
+
                 document.cosmicCat.func.waitForElm("#page").then(async () => {
                     let w;
                     if(window.location.search == "?c=subscriptions") {
@@ -2889,7 +3034,9 @@ ${mhtml}
                         w = document.querySelector("[data-feed-name='youtube']");
                     document.cosmicCat.load.home_category(w);
                 });
+
                 DOMHEAD.innerHTML += '<link rel="stylesheet" href="//s.ytimg.com/yts/cssbin/www-guide-vfljovH6N.css">';
+
                 return `<div id="content">
 <div class="guide-layout-container enable-fancy-subscribe-button">
 <div class="guide-container">
@@ -2948,47 +3095,8 @@ ${localizeString("global.loading")}
         }
         if(window.location.pathname.split("/")[1].match(/watch/i)) {
             let FUNC = (async () => {
-                let commen = "";
-                if (BOOL_LOGIN == true) {
-                    commen = `<form class="comments-post" method="post">
-<input type="text" id="session" hidden="">
-<div class="yt-alert yt-alert-default yt-alert-error hid comments-post-message">
-<div class="yt-alert-icon">
-<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
-</div>
-<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert"></div></div>
-<a href="${document.cosmicCat.data.link}" class="yt-user-photo comments-post-profile">
-<span class="video-thumb ux-thumb yt-thumb-square-46">
-<span class="yt-thumb-clip">
-<span class="yt-thumb-clip-inner">
-<img src="${document.cosmicCat.data.pfp}" alt="${document.cosmicCat.data.name}" width="46"><span class="vertical-align"></span>
-</span>
-</span>
-</span>
-</a>
-<div class="comments-textarea-container" onclick="document.cosmicCat.func.initCommentsForm();">
-<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="" class="comments-textarea-tip">
-<label class="comments-textarea-label" data-upsell="comment">${localizeString("comments.respond")}</label>  <div class="yt-uix-form-input-fluid yt-grid-fluid ">
-<textarea id="" class="yt-uix-form-textarea comments-textarea" onfocus="document.cosmicCat.func.initCommentsForm();" data-upsell="comment" name="comment"></textarea>
-</div>
-</div>
-<p class="comments-remaining">
-${localizeString("comments.charactersremain")}
-</p>
-<p class="comments-threshold-countdown hid">
-<span class="comments-threshold-count"></span> ${localizeString("comments.secondsremain")}
-</p>
-<p class="comments-post-buttons">
-<button type="submit" class="comments-post yt-uix-button yt-uix-button-default" onclick=";return true;" role="button">
-<span class="yt-uix-button-content">${localizeString("buttons.post")} </span>
-</button>
-</p>
-</form>`;
-                } else {
-                    commen = `<div class="comments-post-alert">
-<a href="${document.cosmicCat.data.loginUrl}">Sign In</a> or <a href="https://www.youtube.com/signup">Sign Up</a><span class="comments-post-form-rollover-text"> now to post a comment!</span>
-</div>`;
-                }
+                const {title, views, upload} = document.cosmicCat.func.organizeVideoData(ytInitialData.contents.twoColumnWatchNextResults.results?.results?.contents[0]?.videoPrimaryInfoRenderer);
+                const {owner, description} = document.cosmicCat.func.organizeVideoData(ytInitialData.contents.twoColumnWatchNextResults.results?.results?.contents[1]?.videoSecondaryInfoRenderer);
                 let videoData = document.cosmicCat.func.organizeVideoData(ytInitialPlayerResponse);
                 BOOL_SUBSCRIBE = document.cosmicCat.func.getSubscription();
                 var VALUE_SUGGVIDLOG = (BOOL_LOGIN == true) ? "addto-watch-later-button": "addto-watch-later-button-sign-in";
@@ -3000,8 +3108,8 @@ ${localizeString("comments.charactersremain")}
                 var OBJ_SUGGESTEDVIDEOS = "";
                 var VALUE_SUGGESTEDTOKEN = "";
                 var VALUE_SUBBUTTON = document.cosmicCat.func.getSubscription() ? "subscribed" : "subscribe";
-                var isLiked = ytInitialData.contents.twoColumnWatchNextResults.results ? ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.find(a => a.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer.videoActions.menuRenderer.topLevelButtons[0].toggleButtonRenderer.isToggled ? "liked" : false : "";
-                var isDisliked = ytInitialData.contents.twoColumnWatchNextResults.results? ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.find(a => a.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer.videoActions.menuRenderer.topLevelButtons[1].toggleButtonRenderer.isToggled ? "unliked" : false : "";
+                var isLiked = ytInitialData.contents.twoColumnWatchNextResults.results?.contents?.twoColumnWatchNextResults?.results?.results?.contents?.find(a => a.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer?.videoActions?.menuRenderer?.topLevelButtons[0]?.toggleButtonRenderer?.isToggled ? "liked" : "";
+                var isDisliked = ytInitialData.contents.twoColumnWatchNextResults.results?.contents?.twoColumnWatchNextResults?.results?.results?.contents?.find(a => a.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer?.videoActions?.menuRenderer?.topLevelButtons[1]?.toggleButtonRenderer?.isToggled ? "unliked" : "";
                 for (let i = 0; i < videoData.tags.length; i++) {
                     VALUE_VIDEOTAGS += `<li><a href="https://www.youtube.com/results?search_query=${videoData.tags[i]}&amp;search=tag">${videoData.tags[i]}</a></li>`;
                 }
@@ -3038,46 +3146,55 @@ ${localizeString("comments.charactersremain")}
                 }
                 document.cosmicCat.func.waitForElm(".video-stream.html5-main-video").then((elm) => elm.parentNode.removeChild(elm));
                 document.cosmicCat.func.waitForElm("#video-player").then((elm) => {
-                    document.cosmicCat.func.buildPlayer(videoData.id, window.location.href.split("t=")[1] ? window.location.href.split("t=")[1].split("s")[0] : 1);
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "https://returnyoutubedislikeapi.com/Votes?videoId=" + videoData.id);
-                    xhr.send();
-                    xhr.onload = (e) => {
-                        var result = JSON.parse(e.target.response);
+                    document.cosmicCat.player.Create(videoData.id, window.location.href.split("t=")[1] ? window.location.href.split("t=")[1].split("s")[0] : 1);
+
+                    fetch("https://returnyoutubedislikeapi.com/Votes?videoId=" + videoData.id)
+                    .then((response) => response.json())
+                    .then((result) => {
                         var likes = result.likes;
                         var dislikes = result.dislikes;
                         var rating = likes + dislikes > 0 ? (likes / (likes + dislikes)) * 100 : 50;
                         document.querySelector(".video-extras-sparkbar-likes").style.width = rating + "%";
                         document.querySelector(".likes").innerText = likes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                         document.querySelector(".dislikes").innerText = dislikes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    };
+                    })
+                    .catch((err) => {
+                        console.error("[ReturnYouTubeDislikes] Something went wrong with fetching api:", err);
+                    });
                 });
                 document.cosmicCat.func.waitForElm(".comments-post").then(() => {
                     document.querySelector(".comments-post").addEventListener("submit", async (e) => {
                         e.preventDefault();
+
                         let comm = document.querySelector(".comments-textarea").value;
                         if(comm.length < 1) return;
-                        let api = await document.cosmicCat.func.getApi("/youtubei/v1/comment/create_comment", `createCommentParams: "${document.querySelector("input#session").value}", commentText: "${comm}"`);
+
+                        let api = await document.cosmicCat.AJAX.post("/youtubei/v1/comment/create_comment", `createCommentParams: "${document.querySelector("input#session").value}", commentText: "${comm}"`);
                         if(api.actionResult.status == "STATUS_SUCCEEDED") {
                             let re = api.actions[0].runAttestationCommand.ids;
+
                             let comments = document.querySelector("ul.comment-list.all");
                             let comment = document.createElement("li");
                             comment.setAttribute("class", "comment yt-tile-default");
                             comment.setAttribute("data-author-id", re[2].externalChannelId);
                             comment.setAttribute("data-id", re[0].commentId);
                             comment.setAttribute("data-score", "-1");
+
                             let json = {cum: "a", authorText: {simpleText: document.cosmicCat.data.name}, commentId: re[0].commentId, contentText: {runs: [{text: comm}]}, publishedTimeText: {runs: [{text: "Just now"}]}, authorEndpoint: {browseEndpoint: {canonicalBaseUrl: document.cosmicCat.data.link}}};
-                            let newc = await document.cosmicCat.func.organizeCommentData(json);
+                            let newc = document.cosmicCat.Comments.organizeData(json);
+
                             comment.innerHTML = newc;
                             comments.insertBefore(comment, comments.children[0]);
+
                             document.cosmicCat.func.uninitCommentsForm();
-                            let pp = await document.cosmicCat.func.getApi("/youtubei/v1/att/get", `engagementType: "ENGAGEMENT_TYPE_COMMENT_POST", ids: ${JSON.stringify(re)}`);
+
+                            await document.cosmicCat.AJAX.post("/youtubei/v1/att/get", `engagementType: "ENGAGEMENT_TYPE_COMMENT_POST", ids: ${JSON.stringify(re)}`);
                         }
                         return false;
                     });
                 });
                 document.cosmicCat.func.waitForElm(".comment-list").then(async (elm) => {
-                    if (ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.filter(b => b.itemSectionRenderer)[1]) {
+                    if (ytInitialData.contents.twoColumnWatchNextResults.results?.results?.contents?.filter(b => b.itemSectionRenderer)[1]) {
                         document.cosmicCat.toggleElm("#comments-view");
                         let con = ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.filter(b => b.itemSectionRenderer)[1].itemSectionRenderer.contents[0].continuationItemRenderer.continuationEndpoint.continuationCommand.token;
                         let comments = await document.cosmicCat.Comments.init(con);
@@ -3085,17 +3202,17 @@ ${localizeString("comments.charactersremain")}
                 });
                 return `<div id="content" class="">
 <div id="watch-container" itemscope="" itemtype="https://schema.org/VideoObject">
-<div id="watch-headline-container">
+<div id="watch-headline-container" class="${ytInitialPlayerResponse?.videoDetails ? "" : "hid"}">
 <div id="watch-headline" class="watch-headline">
 <h1 id="watch-headline-title">
-<span id="eow-title" class="" dir="ltr" title="${videoData.title}">
-${videoData.title}
+<span id="eow-title" class="" dir="ltr" title="${title ? title : videoData.title}">
+${title ? title : videoData.title}
 </span>
 </h1>
 <div id="watch-headline-user-info">
 <span class="yt-uix-button-group">
 <button href="https://www.youtube.com${videoData.url}?feature=watch" type="button" class="start yt-uix-button yt-uix-button-default" onclick=";window.location.href=this.getAttribute('href');return false;" role="button">
-<span class="yt-uix-button-content">${videoData.owner}</span>
+<span class="yt-uix-button-content">${owner ? owner.text : videoData.owner}</span>
 </button><div class="yt-subscription-button-hovercard yt-uix-hovercard">
 <span class="yt-uix-button-context-light yt-uix-button-subscription-container">
 <button href="" type="button" class="yt-subscription-button yt-subscription-button-js-default end yt-uix-button yt-uix-button-subscription yt-uix-tooltip ${VALUE_SUBBUTTON}" onclick="document.cosmicCat.func.subscribe();return false;" role="button">
@@ -3135,14 +3252,14 @@ ${localizeString("global.loading")}
 </div>
 </div>
 </div>
-<div id="watch-main-container">
+<div id="watch-main-container" class="${ytInitialPlayerResponse?.videoDetails ? "" : "hid"}">
 <div id="watch-main">
 <div id="watch-panel">
 <div id="watch-actions">
 <div id="watch-actions">
 <div id="watch-actions-right">
 <span class="watch-view-count">
-<strong>${videoData.views[0]}</strong>
+<strong>${views[0]}</strong>
 </span>
 <button onclick=";return false;" title="${localizeString("tooltip.statistics")}" type="button" id="watch-insight-button" class="yt-uix-tooltip yt-uix-tooltip-reverse yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-insight" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="Show video statistics"><span class="yt-valign-trick"></span></span></button>
 </div>
@@ -3188,7 +3305,7 @@ ${localizeString("global.loading")}
 <div id="watch-description-clip">
 <p id="watch-uploader-info">${localizeString("watch.uploaderinfo", videoData)}</p>
 <div id="watch-description-text">
-<p id="eow-description">${videoData.description}</p>
+<p id="eow-description">${description ? description : videoData.description}</p>
 </div>
 <div id="watch-description-extras">
 <h4>${localizeString("watch.category")}:</h4>
@@ -3238,7 +3355,43 @@ ${localizeString("stats.likesdislikes")}
 <div class="comments-section">
 <h4><strong>${localizeString("comments.allcomments")}</strong> (${ytInitialData.contents.twoColumnWatchNextResults.results ? ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.find(b => b.itemSectionRenderer) ? ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.find(b => b.itemSectionRenderer).itemSectionRenderer.contents[0].commentsEntryPointHeaderRenderer ? ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.find(b => b.itemSectionRenderer).itemSectionRenderer.contents[0].commentsEntryPointHeaderRenderer.commentCount ? ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.find(b => b.itemSectionRenderer).itemSectionRenderer.contents[0].commentsEntryPointHeaderRenderer.commentCount.simpleText : "0" : "0" : "0" : "0"}) <a class="comments-section-see-all" href="https://www.youtube.com/all_comments?v=${videoData.id}">${localizeString("global.seeall")}</a></h4>
 <div class="comments-post-container clearfix">
-${commen}
+<div class="comments-post-alert ${BOOL_LOGIN ? "hid": ""}">
+<a href="${document.cosmicCat.data.loginUrl}">Sign In</a> or <a href="https://www.youtube.com/signup">Sign Up</a><span class="comments-post-form-rollover-text"> now to post a comment!</span>
+</div>
+<form class="comments-post ${BOOL_LOGIN ? "" : "hid"}" method="post">
+<input type="text" id="session" hidden="">
+<div class="yt-alert yt-alert-default yt-alert-error hid comments-post-message">
+<div class="yt-alert-icon">
+<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
+</div>
+<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert"></div></div>
+<a href="${document.cosmicCat.data.link}" class="yt-user-photo comments-post-profile">
+<span class="video-thumb ux-thumb yt-thumb-square-46">
+<span class="yt-thumb-clip">
+<span class="yt-thumb-clip-inner">
+<img src="${document.cosmicCat.data.pfp}" alt="${document.cosmicCat.data.name}" width="46"><span class="vertical-align"></span>
+</span>
+</span>
+</span>
+</a>
+<div class="comments-textarea-container" onclick="document.cosmicCat.Comments.Form.init();">
+<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="" class="comments-textarea-tip">
+<label class="comments-textarea-label" data-upsell="comment">${localizeString("comments.respond")}</label>  <div class="yt-uix-form-input-fluid yt-grid-fluid ">
+<textarea id="" class="yt-uix-form-textarea comments-textarea" onfocus="document.cosmicCat.Comments.Form.init();" data-upsell="comment" name="comment"></textarea>
+</div>
+</div>
+<p class="comments-remaining">
+${localizeString("comments.charactersremain")}
+</p>
+<p class="comments-threshold-countdown hid">
+<span class="comments-threshold-count"></span> ${localizeString("comments.secondsremain")}
+</p>
+<p class="comments-post-buttons">
+<button type="submit" class="comments-post yt-uix-button yt-uix-button-default" onclick=";return true;" role="button">
+<span class="yt-uix-button-content">${localizeString("buttons.post")} </span>
+</button>
+</p>
+</form>
 </div>
 <ul class="comment-list all hid"></ul>
 </div>
@@ -3342,38 +3495,45 @@ ${OBJ_SUGGESTEDVIDEOS}
                 for(let i = 0; i < results.length; i++) {
                     if(results[i].videoRenderer) {
                         let videoData = document.cosmicCat.func.organizeVideoData(results[i].videoRenderer);
-                        let main = `<div class="result-item yt-uix-tile yt-tile-default *sr">
-<div class="thumb-container">
-<a href="https://www.youtube.com/watch?v=${videoData.id}" class="ux-thumb-wrap contains-addto result-item-thumb">
-<span class="ux-thumb-wrap contains-addto">
-<span class="video-thumb ux-thumb yt-thumb-default-120">
+                        let main = `<li class="yt-grid-box result-item-video context-data-item" data-context-item-title="${videoData.title}" data-context-item-type="video" data-context-item-time="${videoData.time}" data-context-item-user="${videoData}" data-context-item-id="${videoData.id}" data-context-item-views="${videoData.views[0]}">
+<div id="" class="yt-uix-tile yt-lockup-list yt-tile-default yt-grid-box">
+<div class="yt-lockup-thumbnail">
+<a href="https://www.youtube.com/watch?v=${videoData.id}" class="ux-thumb-wrap yt-uix-sessionlink yt-uix-contextlink contains-addto result-item-thumb">
+<span class="video-thumb ux-thumb yt-thumb-default-185">
 <span class="yt-thumb-clip">
 <span class="yt-thumb-clip-inner">
-<img src="//i1.ytimg.com/vi/${videoData.id}/default.jpg" alt="Thumbnail"><span class="vertical-align"></span>
+<img src="//i3.ytimg.com/vi/${videoData.id}/mqdefault.jpg" alt="Thumbnail" width="185"><span class="vertical-align"></span>
 </span>
 </span>
 </span>
 <span class="video-time">${videoData.time}</span>
-<button onclick=";return false;" title="${localizeString("personal.watchlater")}" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" role="button">
+<button onclick=";return false;" title="${localizeString("personal.watchlater")}" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="${videoData.id}" role="button">
 <span class="yt-uix-button-content">
-<span class="addto-label">${localizeString("personal.watchlater")}</span>
-<span class="addto-label-error">Error</span>
-<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif">
+<img src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="${localizeString("personal.watchlater")}">
 </span>
-<img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
-</span>
+<img class="yt-uix-button-arrow" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt=""></button>
 </a>
 </div>
-<div class="result-item-main-content">
+<div class="yt-lockup-content">
 <h3>
-<a href="https://www.youtube.com/watch?v=${videoData.id}" class="yt-uix-tile-link" dir="ltr" title="${videoData.title}">${videoData.title}</a>
+<a class="yt-uix-contextlink yt-uix-sessionlink yt-uix-tile-link result-item-translation-title" dir="ltr" title="${videoData.title}" href="https://www.youtube.com/watch?v=${videoData.id}">${videoData.title}</a>
 </h3>
-<p id="video-description-${videoData.id}" class="description" dir="ltr">${videoData.description}</p>
+<p class="description" dir="ltr">${videoData.description}</p>
+<div class="yt-lockup-meta">
+<ul class="single-line-lego-list">
+<li><a href="/web/20121031234035/http://www.youtube.com/results?search_query=new&amp;lclk=new/a" class="yt-badge-std">new</a></li>
+<li><a href="/web/20121031234035/http://www.youtube.com/results?search_query=hd&amp;lclk=hd/a" class="yt-badge-std">hd</a></li>
+</ul>
 <p class="facets">
-<span class="username-prepend">${localizeString("watch.by", videoData)}</span> <span class="metadata-separator">|</span>  <span class="date-added">${videoData.views[1]}</span> <span class="metadata-separator">|</span>  <span class="viewcount">${videoData.views[0]}</span>
+<span class="date-added">${videoData.views[1]}</span>
+<span class="metadata-separator">•</span>
+<span class="viewcount">${videoData.views[0]}</span>
 </p>
+<p><span class="username-prepend">${localizeString("watch.by", videoData)}</span></p>
 </div>
-</div>`;
+</div>
+</div>
+</li>`;
                         parse += main;
                     }
                     if(results[i].channelRenderer) {
@@ -3486,10 +3646,20 @@ ${OBJ_SUGGESTEDVIDEOS}
 <div id="search-base-div">
 <div id="search-main" class="ytg-4col new-snippets">
 <div id="results-main-content">
-<div id="search-results">
+<ol id="search-results" class="result-list context-data-container">
 ${parse}
+</ol>
 </div>
 </div>
+</div>
+<div id="search-footer-box" class="searchFooterBox">
+<div class="yt-uix-pager" role="navigation">
+<a href="/web/20121031234035/http://www.youtube.com/results?page=1" class="yt-uix-button yt-uix-sessionlink yt-uix-pager-button yt-uix-button-toggled yt-uix-button-default" data-sessionlink="ei=CMTh9u62rLMCFcPCRAodVVx_nQ%3D%3D" data-page="1" aria-label="Go to page 1">
+<span class="yt-uix-button-content">1</span>
+</a>
+<a href="/web/20121031234035/http://www.youtube.com/results?page=2" class="yt-uix-button yt-uix-sessionlink yt-uix-pager-button yt-uix-button-default" data-sessionlink="ei=CMTh9u62rLMCFcPCRAodVVx_nQ%3D%3D" data-page="2">
+<span class="yt-uix-button-content">Next »</span>
+</a>
 </div>
 </div>
 </div>`;
@@ -3691,6 +3861,7 @@ ${OBJ_FOOTER}`;
         SUPERDOM.innerHTML += final;
         SUPERDUM.appendChild(SUPERDOM);
         document.body.appendChild(SUPERDUM);
+        yt.www.masthead.searchbox.init();
     }
     (async () => {
         return buildYouTube();
