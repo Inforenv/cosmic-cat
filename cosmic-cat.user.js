@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Cosmic Cat
 // @namespace    https://www.youtube.com/*
-// @version      0.5.44b2
+// @version      0.5.44b3
 // @description  Broadcast Yourself
 // @author       CiulinUwU
 // @updateURL    https://raw.githubusercontent.com/ciulinuwu/cosmic-cat/main/cosmic-cat.user.js
@@ -181,35 +181,6 @@
 
                 return a;
             },
-            channel_videos: async () => {
-                var test = new Promise(async resolve => {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("GET", `https://www.youtube.com${window.location.pathname}/videos`);
-                    xhr.onload = async () => {
-                        let a = JSON.parse(xhr.response.split("var ytInitialData = ")[1].split(";</script>")[0]).contents.twoColumnBrowseResultsRenderer.tabs.find(b => b.tabRenderer.endpoint.commandMetadata.webCommandMetadata.url.split("/")[3] === 'videos');
-
-                        if(!a.tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].gridRenderer) return resolve([]);
-
-                        let b = a.tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].gridRenderer.items;
-                        let data = [];
-                        for (let j = 0; j < b.length; j++) {
-                            if(!b[j].continuationItemRenderer) {
-                                let videoData = document.cosmicCat.func.organizeVideoData(b[j].gridVideoRenderer);
-                                data[j] = videoData;
-                            }
-                        }
-                        resolve(data);
-                    };
-                    xhr.onerror = () => {
-                        console.error("** An error occurred during the XMLHttpRequest");
-                    };
-                    xhr.send();
-                });
-
-                let a = await test;
-
-                return a;
-            },
             channel_subscriptions: async () => {
                 var test = new Promise(async resolve => {
                     var xhr = new XMLHttpRequest();
@@ -241,35 +212,6 @@
 
                         await loop(list);
                         resolve(master);
-                    };
-                    xhr.onerror = () => {
-                        console.error("** An error occurred during the XMLHttpRequest");
-                    };
-                    xhr.send();
-                });
-
-                let a = await test;
-
-                return a;
-            },
-            channel_info: async () => {
-                let test = new Promise(async resolve => {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("GET", `https://www.youtube.com${window.location.pathname}/about`);
-                    xhr.onload = async () => {
-                        let a = JSON.parse(xhr.response.split("var ytInitialData = ")[1].split(";</script>")[0]).contents.twoColumnBrowseResultsRenderer.tabs.find(b => b.tabRenderer ? b.tabRenderer.endpoint.commandMetadata.webCommandMetadata.url.split("/")[3] === 'about' : {});
-                        if(!a.tabRenderer) return resolve({});
-                        let b = a.tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].channelAboutFullMetadataRenderer;
-                        let collection = {name: {}, string: {}};
-                        collection.string.BIO = b.artistBio ? "<br/><br/>" + b.artistBio.simpleText.replace(/(?:\r\n|\r|\n)/g, "<br/>") : "";
-                        collection.name.COUNTRY = b.countryLabel ? b.countryLabel.runs[0].text.replace(/(?:\r\n|\r|\n)|( )|:/g, "") : undefined;
-                        collection.string.COUNTRY = b.country ? b.country.simpleText : undefined;
-                        collection.name.JOIN = b.joinedDateText ? b.joinedDateText.runs[0].text.split(" ")[0] : undefined;
-                        collection.string.JOIN = b.joinedDateText ? b.joinedDateText.runs[1].text : undefined;
-                        collection.name.VIEWS = b.viewCountText ? b.viewCountText.simpleText.split(" ")[1].charAt(0).toUpperCase() + b.viewCountText.simpleText.split(" ")[1].slice(1) : undefined;
-                        collection.string.VIEWS = b.viewCountText ? b.viewCountText.simpleText.split(" ")[0] : undefined;
-                        collection.links = b.primaryLinks ? b.primaryLinks : undefined;
-                        resolve(collection);
                     };
                     xhr.onerror = () => {
                         console.error("** An error occurred during the XMLHttpRequest");
@@ -657,7 +599,7 @@ ${string_uploadedorlive} <span class="feed-item-time">${videoData.views[1]}</spa
                 document.querySelector("#watch-related").innerHTML += result;
                 if (!collection.at(-1).continuationItemRenderer) return hide();
                 stopLoad();
-            }
+            },
         },
         func: {
             trackCurrent: () => {
@@ -949,422 +891,6 @@ ${string_uploadedorlive} <span class="feed-item-time">${videoData.views[1]}</spa
 
                 return tags;
             },
-            buildChannelTheme: async (arg = Number, data = Object) => {
-                let channel1 = () => {
-                };
-                let channel2 = async() => {
-                    document.querySelector("#www-yt-core").href = "//s.ytimg.com/yt/cssbin/www-refresh-vflzVUPsm.css";
-                    document.head.innerHTML += '<link rel="stylesheet" href="//s.ytimg.com/yt/cssbin/www-channel_new-vflrWkVe_.css"><link rel="stylesheet" href="//s.ytimg.com/yt/cssbin/www-the-rest-vflNb6rAI.css">';
-                    let thelegend = "";
-                    if (window.location.pathname.split("/")[2].match(/technoblade/gi)) {
-                        thelegend = `<div id="the-blood-king">Long live the blood king🐷❤️</div>`;
-                    }
-                    let videoData = document.cosmicCat.func.organizeVideoData(data.HOMEVIDEO);
-                    let tags = document.cosmicCat.func.customTags(data);
-                    let OBJ_SECTIONS = "";
-                    for (let i = 0; i < tags.length; i++) {
-                        OBJ_SECTIONS += `<div class="show_info outer-box-bg-as-border"><div class="profile-info-label">${localizeString("customtag." + tags[i].name.toLowerCase())}</div><div class="profile-info-value" id="profile_show_${tags[i].name}">${tags[i].value}</div><div class="cb"></div></div>`;
-                    }
-                    let videos = "";
-                    for (let i = 0; i < data?.VIDEOS?.length; i++) {
-                        let {owner, time, views, title, id, url} = data.VIDEOS[i];
-                        videos += `<div id="playnav-video-play-uploads-12-${id}" class="playnav-item playnav-video">
-<div style="display:none" class="encryptedVideoId">${id}</div>
-<div id="playnav-video-play-uploads-12-${id}-selector" class="selector"></div>
-<div class="content">
-<div class="playnav-video-thumb">
-<a href="https://www.youtube.com/watch?v=${id}" onclick="document.cosmicCat.func.loadPlaynavVideo('${id}');return false;" class="ux-thumb-wrap contains-addto">
-<span class="video-thumb ux-thumb-96 ">
-<span class="clip">
-<img src="//i1.ytimg.com/vi/${id}/default.jpg" alt="Thumbnail" class="" onclick="document.cosmicCat.func.loadPlaynavVideo('${id}');return false;" title="${title}">
-</span>
-</span>
-<span class="video-time">${time}</span>
-<span dir="ltr" class="yt-uix-button-group addto-container short video-actions">
-<button type="button" class="master-sprite start yt-uix-button yt-uix-button-short yt-uix-tooltip" onclick=";return false;" title="" role="button" aria-pressed="false">
-<img class="yt-uix-button-icon-addto" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
-<span class="yt-uix-button-content">
-<span class="addto-label">${localizeString("buttons.addto")}</span>
-</span>
-</button>
-<button type="button" class="end yt-uix-button yt-uix-button-short yt-uix-tooltip" onclick=";return false;" title="" role="button" aria-pressed="false">
-<img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
-</button>
-</span>
-</a>
-</div>
-<div class="playnav-video-info">
-<a href="https://www.youtube.com/watch?v=${id}" class="playnav-item-title ellipsis" onclick="document.cosmicCat.func.loadPlaynavVideo('${id}');return false;" id="playnav-video-title-play-uploads-12-${id}">
-<span dir="ltr">${title}</span>
-</a>
-<div class="metadata">
-<span dir="ltr">${views[0]}  -  ${views[1]}</span>
-</div>
-<div style="display:none" id="playnav-video-play-uploads-12">${id}</div>
-</div>
-</div>
-</div>`;
-                    }
-                    let recentfeed = "";
-                    for (let i = 0; i < data?.RECENTFEED?.length; i++) {
-                        let u = '<tr id="feed_divider"><td colspan="3" class="outer-box-bg-as-border divider">&nbsp;</td>';
-                        recentfeed += `
-<tr id="feed_item" valign="top">
-<td class="feed_icon">
-<img class="master-sprite icon-BUL" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif">
-</td>
-<td>
-<div class="feed_title">
-<div dir="ltr">
-<span dir="ltr">${data.RECENTFEED[i].author}</span>
-<span dir="ltr"></span>
-<span class="bulletin_message">${data.RECENTFEED[i].text}</span>
-</div>
-<div>
-${data.RECENTFEED[i].images}
-</div>
-<div>
-<span class="timestamp">(${data.RECENTFEED[i].timestamp})</span>
-</div>
-</div>
-</td>
-</tr>
-${u}</tr>`;
-                    }
-                    let OBJ_SUBS = ``;
-                    if(data?.SUBSCRIPTIONS?.array?.length > 1) {
-                        let peeps = "";
-                        let pei = [[], []];
-                        for (let i = 0; i < data.SUBSCRIPTIONS.array.length; i++) {
-                            let name = data.SUBSCRIPTIONS.array[i].title.simpleText.slice(0, 7) + "...";
-                            let string = `<div class="user-peep" style="width:33%;">
-<center>
-<div class="user-thumb-large link-as-border-color">
-<div>
-<a href="https://www.youtube.com/channel/${data.SUBSCRIPTIONS.array[i].channelId}"><img src="${data.SUBSCRIPTIONS.array[i].thumbnail.thumbnails[0].url}"></a>
-</div>
-</div>
-<a href="https://www.youtube.com/channel/${data.SUBSCRIPTIONS.array[i].channelId}" title="${data.SUBSCRIPTIONS.array[i].title.simpleText}" rel="following">${name}</a>
-</center>
-</div>`;
-                            if(i < 6) {
-                                pei[0].push(string);
-                            } else {
-                                pei[1].push(string);
-                            }
-                        }
-                        let ueu = "";
-                        let uwu = "";
-                        for (let i = 0; i < pei[1].length; i++) {
-                            ueu += pei[1][i];
-                        }
-                        for (let i = 0; i < pei[0].length; i++) {
-                            uwu += pei[0][i];
-                        }
-
-                        let to = `<div class="hid">${ueu}</div>`;
-
-                        peeps = uwu + to;
-
-                        OBJ_SUBS = `<div class="inner-box" id="user_subscriptions" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
-<div style="zoom:1">
-<div class="box-title title-text-color">${localizeString("personal.subscriptions")} (<a href="?view=subscriptions" class="headersSmall" name="channel-box-item-count">${data.SUBSCRIPTIONS.length}</a>)</div>
-<div class="box-editor">
-<div style="float:right"></div>
-</div>
-<div class="cb"></div>
-</div>
-<div id="user_subscriptions-messages" class="hid"></div>
-<div id="user_subscriptions-body">
-<div style="zoom:1;margin: 0 -12px">
-${peeps}
-<div style="clear:both;font-height:1px"></div>
-</div>
-<div>
-<div style="font-size: 12px; text-align: right; margin-top: 7px;">
-<b><a name="channel-box-see-all" href="?view=subscriptions">${localizeString("global.seeall")}</a></b>
-</div>
-</div>
-</div>
-<div class="clear"></div>
-</div>`;
-                    }
-                    let OBJ_views = "";
-                    if(data?.INFO?.string?.VIEWS !== undefined) {
-                        OBJ_views = `<div class="show_info outer-box-bg-as-border"><div class="profile-info-label">${(Number(data.INFO.string.VIEWS.replace(/,|./g, "")) > 1) ? localizeString("about.viewedcounts") : localizeString("about.viewedcount")}</div><div class="profile-info-value" id="profile_show_viewed_count">${data.INFO.string.VIEWS}</div><div class="cb"></div></div>`;
-                    }
-                    let OBJ_join = "";
-                    if(data?.INFO?.string?.JOIN !== undefined) {
-                        OBJ_join = `<div class="show_info outer-box-bg-as-border"><div class="profile-info-label">${localizeString("about.membersince")}</div><div class="profile-info-value" id="profile_show_member_since">${data.INFO.string.JOIN}</div><div class="cb"></div></div>`;
-                    }
-                    let OBJ_subcount = "";
-                    if(data?.SUBCOUNT !== undefined) {
-                        OBJ_subcount = `<div class="show_info outer-box-bg-as-border"><div class="profile-info-label">${(Number(data.SUBCOUNT.replace(/,|./g, "")) > 1) ? localizeString("about.subs") : localizeString("about.sub")}</div><div class="profile-info-value" id="profile_show_subscriber_count">${data.SUBCOUNT}</div><div class="cb"></div></div>`;
-                    }
-                    let OBJ_country = "";
-                    if(data?.INFO?.string?.COUNTRY !== undefined) {
-                        OBJ_country = `<div class="show_info outer-box-bg-as-border"><div class="profile-info-label">${localizeString("about.country")}</div><div class="profile-info-value" id="profile_show_country">${data.INFO.string.COUNTRY}</div><div class="cb"></div></div>`;
-                    }
-                    var OBJ_USERPROFILE = `<div id="user_profile" class="inner-box" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
-<div class="box-title title-text-color">Profile</div>
-<div class="cb"></div>
-<div id="user_profile-body">
-<div class="profile_info vcard">
-${OBJ_views}
-${OBJ_join}
-${OBJ_subcount}
-${OBJ_country}
-${OBJ_SECTIONS}
-<div class="show_info outer-box-bg-as-border" style="border-bottom-width:1px;margin-bottom:4px;line-height:140%" dir="ltr">${data.DESCRIPTION}${data?.INFO?.string?.BIO}</div>
-</div>
-</div>
-<div class="cb"></div>
-</div>`;
-                    var OBJ_PLAYNAVA = `<div id="playnav-body" style="position: inherit;">
-<div id="playnav-player" class="playnav-player-container" style="visibility: visible; left: 0px;position: inherit;">
-<movie-player id="video-player"></movie-player>
-</div>
-<div id="playnav-playview" class="" style="display: block;position: absolute;height: 0;">
-<div id="playnav-left-panel" style="display: block;">
-<div id="playnav-video-details">
-<div id="playnav-bottom-links">
-<div id="playnav-bottom-links-clip" class="playnav-bottom-links-clip">
-<table>
-<tbody>
-<tr>
-<td id="playnav-panel-tab-info" class="panel-tab-selected">
-<table class="panel-tabs">
-<tbody>
-<tr>
-<td class="panel-tab-title-cell">
-<div class="playnav-panel-tab-icon" id="panel-icon-info" onclick="playnav.selectPanel('info')"></div>
-<div class="playnav-bottom-link" id="info-bottom-link">
-<a href="javascript:;" onclick="playnav.selectPanel('info')">Info</a>
-</div>
-<div class="spacer">&nbsp;</div>
-</td>
-</tr>
-<tr>
-<td class="panel-tab-indicator-cell inner-box-opacity">
-<div class="panel-tab-indicator-arrow" style="border-bottom-color: rgb(238, 238, 255) !important;"></div>
-</td>
-</tr>
-</tbody>
-</table>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="cb"></div>
-<div class="playnav-video-panel inner-box-colors border-box-sizing" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
-<div id="playnav-video-panel-inner" class="playnav-video-panel-inner border-box-sizing" style="overflow: auto;">
-<div id="playnav-panel-info" class="scrollable" style="display: block;">
-<div id="channel-like-action">
-<div id="channel-like-buttons">
-<button title="I like this" type="button" class="yt-uix-button yt-uix-tooltip" data-watchid="${videoData.id}" onclick="document.cosmicCat.func.likeThis(this.getAttribute('data-watchid'));return false;" id="watch-like" role="button" aria-pressed="false">
-<img class="yt-uix-button-icon yt-uix-button-icon-watch-like" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""><span class="yt-uix-button-content">Like</span>
-</button>
-&nbsp;
-<button title="I dislike this" type="button" class="yt-uix-button yt-uix-tooltip yt-uix-button-empty" data-watchid="${videoData.id}" onclick="document.cosmicCat.func.dislikeThis(this.getAttribute('data-watchid'));return false;" id="watch-unlike" role="button" aria-pressed="false">
-<img class="yt-uix-button-icon yt-uix-button-icon-watch-unlike" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
-</button>
-</div>
-<div id="channel-like-logged-out" class="hid">
-<strong>
-<a href="${document.cosmicCat.data.loginUrl}">Sign in</a> or <a href="https://www.youtube.com/signup">sign up</a> now!
-</strong>
-</div>
-</div>
-<div id="playnav-curvideo-title" class="inner-box-link-color" dir="ltr">
-<a style="cursor:pointer;margin-right:7px" href="/watch?v=${videoData.id}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
-${videoData.title}
-</a>
-</div>
-<div id="playnav-curvideo-info-line">
-${localizeString("watch.from", data.CHANNELNAME)} &nbsp;|
-<span dir="ltr">${videoData.views[1]}</span>
-&nbsp;|
-<span id="playnav-curvideo-view-count">${videoData.views[0]}</span>
-</div>
-<div class="cb"></div>
-<div id="channel-like-result" class="hid">
-<div id="watch-actions-area" class="yt-rounded">&nbsp;</div>
-</div>
-<div id="channel-like-loading" class="hid">${localizeString("global.loading")}</div>
-<div class="cb"></div>
-<div id="playnav-curvideo-description-container">
-<div id="playnav-curvideo-description" dir="ltr">${videoData.description}</div>
-</div>
-<a href="https://www.youtube.com/watch?v=${videoData.id}" id="playnav-watch-link" onclick="playnav.goToWatchPage()">View comments, related videos, and more</a>
-<div id="playnav-curvideo-controls"></div>
-<div class="cb"></div>
-</div>
-<div id="playnav-panel-comments" class="hid"></div>
-<div id="playnav-panel-favorite" class="hid"></div>
-<div id="playnav-panel-share" class="hid scrollable"></div>
-<div id="playnav-panel-playlists" class="hid"></div>
-<div id="playnav-panel-flag" class="hid scrollable"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="playnav-play-panel" style="margin-top: -400px;height: 0;">
-<div id="playnav-play-content" style="height: 601px;">
-<div class="playnav-playlist-holder" id="playnav-play-playlist-uploads-holder">
-<div id="playnav-play-uploads-scrollbox" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);" class="scrollbox-wrapper inner-box-colors">
-<div class="scrollbox-content playnav-playlist-non-all">
-<div class="scrollbox-body" style="height: 514px;">
-<div class="outer-scrollbox">
-<div id="playnav-play-uploads-items" class="inner-scrollbox">
-<div id="playnav-play-uploads-page-0" class="scrollbox-page loaded videos-rows-50">
-${videos}
-<div id="uploads-cb" class="cb"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>`;
-                    var OBJ_PLAYNAV = `<div id="user_playlist_navigator" style="background-color: rgb(153, 153, 153); color: rgb(0, 0, 0);position: inherit;" class="outer-box yt-rounded">
-<div id="playnav-channel-header" class="inner-box-bg-color" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
-<div id="playnav-title-bar">
-<div id="playnav-channel-name" style="background-color: rgb(153, 153, 153); color: rgb(0, 0, 0);" class="outer-box-bg-color">
-<div class="channel-thumb-holder outer-box-color-as-border-color"><div class="user-thumb-semismall">
-<div>
-<img src="${data.CHANNELICON}">
-</div>
-</div>
-</div>
-<div class="channel-title-container">
-<div class="channel-title outer-box-color" id="channel_title" dir="ltr">${data.CHANNELNAME}</div>
-<div class="channel-title outer-box-color" style="font-size:11px" id="channel_base_title">${data.CHANNELNAME}'s ${localizeString("global.channel")}</div>
-</div>
-<div id="subscribe-buttons">
-<span class="subscription-container">
-<button type="button" class="subscribe-button yt-uix-button yt-uix-button-urgent yt-uix-tooltip" onclick="document.cosmicCat.func.subscribe();return false;" title="Click to be notified of new videos from this channel" role="button" data-tooltip-text="Click to be notified of new videos from this channel">
-<span class="yt-uix-button-content">${data.SUBSCRIBE ? localizeString("buttons.subscribed") : localizeString("buttons.subscribe")}</span>
-</button>
-<span class="subscription-subscribed-container hid">
-<span class="subscription-options-button subscription-expander yt-uix-expander yt-uix-expander-collapsed">
-<span class="yt-uix-expander-head yt-rounded">
-<button class="yt-uix-expander-arrow" onclick="return false;">
-</button>
-<span class="yt-alert yt-alert-success yt-alert-small yt-alert-naked yt-rounded">
-<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon" alt="Alert icon">
-<span class="yt-alert-content">${localizeString("buttons.subscribed")}</span>
-</span>
-</span>
-</span>
-</span>
-</span>
-</div>
-</div>
-<div id="playnav-chevron" style="border-left-color: rgb(153, 153, 153);">&nbsp;</div>
-</div>
-<div id="playnav-navbar">
-<table>
-<tbody>
-<tr>
-<td>
-<a class="navbar-tab inner-box-link-color navbar-tab-selected" id="playnav-navbar-tab-playlists">Uploads</a>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="cb"></div>
-</div>
-<div id="subscription-button-module-menu" class="hid subscription-menu-expandable subscription-menu">
-<div class="subscription-menu-not-logged-in">
-<strong>
-<a href="${document.cosmicCat.data.loginUrl}">Sign in</a> or <a href="https://www.youtube.com/signup">sign up</a> now!
-</strong>
-</div>
-</div>
-${(videos.length > 0) ? OBJ_PLAYNAVA : ""}
-</div>`;
-                    var OBJ_RECENTACT;
-                    var OBJ_LEFTCOLL = `<div class="left-column" id="main-channel-left">
-<div class="inner-box" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
-<div style="float:left;padding:0 4px 4px 0" class="link-as-border-color">
-<div class="user-thumb-xlarge">
-<div>
-<a href="${data.CHANNELURL}"><img src="${data.CHANNELICON}"></a>
-</div>
-</div>
-</div>
-<div style="float:left;width:170px">
-<div class="box-title title-text-color" title="${data.CHANNELNAME}" style="float:none;padding-left:4px;margin-top:-2px;width:170px;overflow:hidden;font-size:111%">
-<span class="yt-user-name" dir="ltr">${data.CHANNELNAME}</span>
-</div>
-<div style="whitespace:no-wrap;position:relative;width:170px;">
-<div>
-<span class="subscription-container">
-<button type="button" class="subscribe-button yt-uix-button yt-uix-button-urgent yt-uix-tooltip" onclick="document.cosmicCat.func.subscribe();return false;" title="Click to be notified of new videos from this channel" role="button">
-<span class="yt-uix-button-content">${data.SUBSCRIBE ? localizeString("buttons.subscribed") : localizeString("buttons.subscribe")}</span>
-<img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
-</button>
-</span>
-</div>
-</div>
-${thelegend}
-</div>
-<div class="cb"></div>
-</div>
-${OBJ_USERPROFILE}
-${OBJ_SUBS}
-</div>`;
-                    var OBJ_RIGHTCOLL = `<div class="right-column" id="main-channel-right">
-<div class="inner-box" id="user_recent_activity" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
-<div style="zoom:1">
-<div class="box-title title-text-color">Recent Activity</div>
-<div class="cb"></div>
-</div>
-<div id="user_recent_activity-body">
-<div id="feed_table">
-<div class="text-field recent-activity-content outer-box-bg-as-border" style="_width:610px">
-<table width="97%" cellspacing="0" cellpadding="0" border="0">
-<tbody>${recentfeed}</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="clear"></div>
-</div>`;
-                    var OBJ_CHANCON = `<div class="outer-box" id="main-channel-content" style="z-index: 0;background-color: rgb(153, 153, 153); color: rgb(0, 0, 0);">
-${OBJ_LEFTCOLL}${OBJ_RIGHTCOLL}
-<div class="cb"></div>
-</div>`;
-                    return `<div id="channel-body" style="background-color: rgb(204, 204, 204)" class="jsloaded">
-<div id="channel-base-div">
-${OBJ_PLAYNAV}
-${OBJ_CHANCON}
-</div>
-</div>
-<div class="cb">
-<div class="clear"></div>
-</div>`;
-                };
-                let channel3 = () => {
-                };
-                switch (arg) {
-                    case 0:
-                        return channel1();
-                    case 1:
-                        return channel2();
-                    case 2:
-                        return channel3();
-                    default:
-                        return error("buildChannelTheme: Supply valid number between 0-2");
-                }
-            },
             setVolume: (vol = Number) => {
                 let volume = 0;
                 switch (true) {
@@ -1586,12 +1112,16 @@ ${OBJ_CHANCON}
             fetch: async () => {
                 let isLoggedIn = await fetch("/getAccountSwitcherEndpoint").then(re => re.text()).then(re => {return JSON.parse(re.slice(5))}).catch(err => error(err));
 
-                BOOL_LOGIN = !isLoggedIn.ok;
+                try {
+                    BOOL_LOGIN = !isLoggedIn.ok;
+                } catch {
+                    BOOL_LOGIN = false;
+                }
 
                 if(BOOL_LOGIN == true) {
-                    let popup = isLoggedIn.data.actions[0].getMultiPageMenuAction.menu.multiPageMenuRenderer.sections.find(a => a.accountSectionListRenderer.contents[0].accountItemSectionRenderer.contents[0].accountItem.isSelected == true);
-                    let accountItem = popup.accountSectionListRenderer.contents[0].accountItemSectionRenderer.contents[0].accountItem;
-                    let google = popup.accountSectionListRenderer.header.googleAccountHeaderRenderer;
+                    let popup = isLoggedIn.data.actions[0].getMultiPageMenuAction.menu.multiPageMenuRenderer.sections[0].accountSectionListRenderer;
+                    let accountItem = popup.contents[0].accountItemSectionRenderer.contents.find(a => a.accountItem.isSelected == true)?.accountItem;
+                    let google = popup.header.googleAccountHeaderRenderer;
                     document.cosmicCat.data.loggedin = true;
                     document.cosmicCat.data.name = accountItem.accountName.simpleText;
                     document.cosmicCat.data.pfp = accountItem.accountPhoto.thumbnails[0].url;
@@ -1646,6 +1176,132 @@ ${OBJ_CHANCON}
                 elm.classList.remove("hid");
             } else {
                 elm.classList.add("hid");
+            }
+        },
+        Utils: {
+            convertXHRtoJSON: (data) => {
+                return data.then(da => {
+                    try {
+                        return JSON.parse(da.split("var ytInitialData = ")[1].split(";</script>")[0]);
+                    } catch {
+                        return {error: 404};
+                    }
+                });
+            },
+            browseTabs: {
+                find: (data, param) => {
+                    try {
+                        return data.contents.twoColumnBrowseResultsRenderer.tabs.find(b => b.tabRenderer ? b.tabRenderer.endpoint.commandMetadata.webCommandMetadata.url.split("/")[3] === param : {});
+                    } catch {
+                        return {error: 404};
+                    }
+                },
+                content: (data) => {
+                    try {
+                        return data.tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents;
+                    } catch {
+                        return {error: 404};
+                    }
+                }
+            },
+            Sort: {
+                channelData: (data) => {
+                    console.log(data);
+
+                    let id = data.channelId;
+                    let name = data.title ? data.title.simpleText : undefined;
+                    let avatars = data.avatar ? data.avatar.thumbnails : undefined;
+                    let artist = data.artistBio ? "<br/><br/>" + data.artistBio.simpleText.replace(/(?:\r\n|\r|\n)/g, "<br/>") : "";
+                    let country = data.country ? data.country.simpleText : undefined;
+                    let joined = data.joinedDateText ? data.joinedDateText.runs[1].text : undefined;
+                    let views = data.viewCountText ? data.viewCountText.simpleText.split(" ")[0] : undefined;
+                    let links = data.primaryLinks ? data.primaryLinks : undefined;
+                    let description = data.description ? data.description.simpleText.replace(/(?:\r\n|\r|\n)/g, "<br/>") : undefined;
+
+                    //collection.name.COUNTRY = b.countryLabel ? b.countryLabel.runs[0].text.replace(/(?:\r\n|\r|\n)|( )|:/g, "") : undefined;
+                    //collection.name.JOIN = b.joinedDateText ? b.joinedDateText.runs[0].text.split(" ")[0] : undefined;
+                    //collection.name.VIEWS = b.viewCountText ? b.viewCountText.simpleText.split(" ")[1].charAt(0).toUpperCase() + b.viewCountText.simpleText.split(" ")[1].slice(1) : undefined;
+
+                    return {
+                        id: id,
+                        name: name,
+                        avatar: avatars,
+                        artistBio: artist,
+                        country: country,
+                        joined: joined,
+                        views: views,
+                        links: links,
+                        description: description
+                    }
+                },
+                feedImagesData: (data) => {
+                    let stor = "";
+
+                    for (let i = 0; i < data.images.length; i++) {
+                        stor += `<img src="${data.images[i].backstageImageRenderer.image.thumbnails[0].url}"/>`;
+                    }
+
+                    return stor;
+                },
+                feedVideoData: (data) => {
+                    let {id, title, time} = document.cosmicCat.func.organizeVideoData(data);
+                    return `<div class="playnav-item playnav-video">
+<div style="display:none" class="encryptedVideoId">${id}</div>
+<div class="selector"></div>
+<div class="content">
+<div class="playnav-video-thumb">
+<a href="https://www.youtube.com/watch?v=${id}" onclick="document.cosmicCat.func.loadPlaynavVideo('${id}');return false;" class="ux-thumb-wrap">
+<span class="video-thumb ux-thumb-96 ">
+<span class="clip">
+<img src="//i1.ytimg.com/vi/${id}/default.jpg" alt="Thumbnail" class="" onclick="document.cosmicCat.func.loadPlaynavVideo('${id}');return false;" title="${title}">
+</span>
+</span>
+<span class="video-time">${time}</span>
+</a>
+</div>
+<div class="playnav-video-info">
+<a href="https://www.youtube.com/watch?v=${id}" class="playnav-item-title ellipsis" onclick="document.cosmicCat.func.loadPlaynavVideo('${id}');return false;">
+<span dir="ltr">${title}</span>
+</a>
+<div style="display:none" id="playnav-video-play-uploads-12">${id}</div>
+</div>
+</div>
+</div>`;
+                },
+                feedData: (data) => {
+                    let filter = (j) => {
+                        let img = j.backstageAttachment;
+                        if(!img) return '';
+                        let stor = "";
+                        for (const obj in img) {
+                            switch (obj) {
+                                case 'postMultiImageRenderer':
+                                    stor = document.cosmicCat.Sort.feedImagesData(img.postMultiImageRenderer);
+                                    break;
+                                case 'backstageImageRenderer':
+                                    stor = '<img src="' + img.backstageImageRenderer.image.thumbnails[0].url + '">';
+                                    break;
+                                case 'videoRenderer':
+                                    //stor = document.cosmicCat.Sort.feedVideoData(img.videoRenderer);
+                                    break;
+                            }
+                        }
+                        return stor;
+                    };
+
+                    let post = data.backstagePostThreadRenderer.post.sharedPostRenderer ? data.backstagePostThreadRenderer.post.sharedPostRenderer.originalPost.backstagePostRenderer : data.backstagePostThreadRenderer.post.backstagePostRenderer;
+                    let text = post.contentText.runs ? post.contentText.runs[0].text : "";
+                    let images = filter(post);
+                    let author = post.authorText.runs[0].text;
+                    let timestamp = post.publishedTimeText.runs[0].text;
+
+                    return {
+                        text: text,
+                        images: images,
+                        author: author,
+                        timestamp: timestamp
+                    };
+                }
             }
         },
         Comments: {
@@ -1899,6 +1555,508 @@ ${__a[1]}`;
                 }
             }
         },
+        Channels: {
+            customTags: (data) => {
+                if (!data) return [];
+                let tags = [];
+                let TAGS = data.matchAll(/\[\+\w\+="(\d+|.+)"]/g);
+                data = data.replace(/\[\+\w\+="(\d+|.+)"]/g, "");
+                for (const tag of TAGS) {
+                    if(tag[0].split(/\+/g)[1] == "a" && tag[0].match(/"\d+"/g) && tag[0].split(/"/g)[1] < 101) {
+                        tags.push({name: "Age", value: tag[0].split(/"/g)[1]});
+                    }
+                    if(tag[0].split(/\+/g)[1] == "o" && tag[0].match(/"\w+/g)) {
+                        tags.push({name: "Occupation", value: tag[0].split(/"/g)[1]});
+                    }
+                }
+
+                return tags;
+            },
+            renderPage: (arg, data) => {
+                let channel1 = () => {
+                };
+                let channel2 = () => {
+                    document.querySelector("#www-yt-core").href = "//s.ytimg.com/yt/cssbin/www-refresh-vflzVUPsm.css";
+                    document.head.innerHTML += '<link rel="stylesheet" href="//s.ytimg.com/yt/cssbin/www-channel_new-vflrWkVe_.css"><link rel="stylesheet" href="//s.ytimg.com/yt/cssbin/www-the-rest-vflNb6rAI.css">';
+
+                    let thelegend = "";
+                    if (window.location.pathname.split("/")[2].match(/technoblade/gi)) {
+                        thelegend = `<div id="the-blood-king">Long live the blood king🐷❤️</div>`;
+                    }
+
+                    let videoData = document.cosmicCat.func.organizeVideoData(data.HOMEVIDEO);
+                    let tags = document.cosmicCat.Channels.customTags(data.info.description);
+
+                    let OBJ_SECTIONS = "";
+                    for (let i = 0; i < tags.length; i++) {
+                        OBJ_SECTIONS += `<div class="show_info outer-box-bg-as-border"><div class="profile-info-label">${localizeString("customtag." + tags[i].name.toLowerCase())}</div><div class="profile-info-value" id="profile_show_${tags[i].name}">${tags[i].value}</div><div class="cb"></div></div>`;
+                    }
+
+                    // load videos
+                    let videos = "";
+                    for (let i = 0; i < data.videos.length; i++) {
+                        let {owner, time, views, title, id, url} = data.videos[i];
+                        videos += `<div id="playnav-video-play-uploads-12-${id}" class="playnav-item playnav-video">
+<div style="display:none" class="encryptedVideoId">${id}</div>
+<div id="playnav-video-play-uploads-12-${id}-selector" class="selector"></div>
+<div class="content">
+<div class="playnav-video-thumb">
+<a href="https://www.youtube.com/watch?v=${id}" onclick="document.cosmicCat.func.loadPlaynavVideo('${id}');return false;" class="ux-thumb-wrap contains-addto">
+<span class="video-thumb ux-thumb-96 ">
+<span class="clip">
+<img src="//i1.ytimg.com/vi/${id}/default.jpg" alt="Thumbnail" class="" onclick="document.cosmicCat.func.loadPlaynavVideo('${id}');return false;" title="${title}">
+</span>
+</span>
+<span class="video-time">${time}</span>
+<span dir="ltr" class="yt-uix-button-group addto-container short video-actions">
+<button type="button" class="master-sprite start yt-uix-button yt-uix-button-short yt-uix-tooltip" onclick=";return false;" title="" role="button" aria-pressed="false">
+<img class="yt-uix-button-icon-addto" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
+<span class="yt-uix-button-content">
+<span class="addto-label">${localizeString("buttons.addto")}</span>
+</span>
+</button>
+<button type="button" class="end yt-uix-button yt-uix-button-short yt-uix-tooltip" onclick=";return false;" title="" role="button" aria-pressed="false">
+<img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
+</button>
+</span>
+</a>
+</div>
+<div class="playnav-video-info">
+<a href="https://www.youtube.com/watch?v=${id}" class="playnav-item-title ellipsis" onclick="document.cosmicCat.func.loadPlaynavVideo('${id}');return false;" id="playnav-video-title-play-uploads-12-${id}">
+<span dir="ltr">${title}</span>
+</a>
+<div class="metadata">
+<span dir="ltr">${views[0]}  -  ${views[1]}</span>
+</div>
+<div style="display:none" id="playnav-video-play-uploads-12">${id}</div>
+</div>
+</div>
+</div>`;
+                    }
+
+                    let recentfeed = "";
+                    for (let i = 0; i < data.feed.length; i++) {
+                        let u = '<tr id="feed_divider"><td colspan="3" class="outer-box-bg-as-border divider">&nbsp;</td>';
+                        recentfeed += `
+<tr id="feed_item" valign="top">
+<td class="feed_icon">
+<img class="master-sprite icon-BUL" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif">
+</td>
+<td>
+<div class="feed_title">
+<div dir="ltr">
+<span dir="ltr">${data.feed[i].author}</span>
+<span dir="ltr"></span>
+<span class="bulletin_message">${data.feed[i].text}</span>
+</div>
+<div>
+${data.feed[i].images}
+</div>
+<div>
+<span class="timestamp">(${data.feed[i].timestamp})</span>
+</div>
+</div>
+</td>
+</tr>
+${u}</tr>`;
+                    }
+                    let OBJ_SUBS = ``;
+                    if(data?.SUBSCRIPTIONS?.array?.length > 1) {
+                        let peeps = "";
+                        let pei = [[], []];
+                        for (let i = 0; i < data.SUBSCRIPTIONS.array.length; i++) {
+                            let name = data.SUBSCRIPTIONS.array[i].title.simpleText.slice(0, 7) + "...";
+                            let string = `<div class="user-peep" style="width:33%;">
+<center>
+<div class="user-thumb-large link-as-border-color">
+<div>
+<a href="https://www.youtube.com/channel/${data.SUBSCRIPTIONS.array[i].channelId}"><img src="${data.SUBSCRIPTIONS.array[i].thumbnail.thumbnails[0].url}"></a>
+</div>
+</div>
+<a href="https://www.youtube.com/channel/${data.SUBSCRIPTIONS.array[i].channelId}" title="${data.SUBSCRIPTIONS.array[i].title.simpleText}" rel="following">${name}</a>
+</center>
+</div>`;
+                            if(i < 6) {
+                                pei[0].push(string);
+                            } else {
+                                pei[1].push(string);
+                            }
+                        }
+                        let ueu = "";
+                        let uwu = "";
+                        for (let i = 0; i < pei[1].length; i++) {
+                            ueu += pei[1][i];
+                        }
+                        for (let i = 0; i < pei[0].length; i++) {
+                            uwu += pei[0][i];
+                        }
+
+                        let to = `<div class="hid">${ueu}</div>`;
+
+                        peeps = uwu + to;
+
+                        OBJ_SUBS = `<div class="inner-box" id="user_subscriptions" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
+<div style="zoom:1">
+<div class="box-title title-text-color">${localizeString("personal.subscriptions")} (<a href="?view=subscriptions" class="headersSmall" name="channel-box-item-count">${data.SUBSCRIPTIONS.length}</a>)</div>
+<div class="box-editor">
+<div style="float:right"></div>
+</div>
+<div class="cb"></div>
+</div>
+<div id="user_subscriptions-messages" class="hid"></div>
+<div id="user_subscriptions-body">
+<div style="zoom:1;margin: 0 -12px">
+${peeps}
+<div style="clear:both;font-height:1px"></div>
+</div>
+<div>
+<div style="font-size: 12px; text-align: right; margin-top: 7px;">
+<b><a name="channel-box-see-all" href="?view=subscriptions">${localizeString("global.seeall")}</a></b>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</div>`;
+                    }
+                    let OBJ_views = "";
+                    if(data.info.views !== undefined) {
+                        OBJ_views = `<div class="show_info outer-box-bg-as-border"><div class="profile-info-label">${(Number(data.info.views.replace(/,|./g, "")) < 1) ? localizeString("about.viewedcounts") : localizeString("about.viewedcount")}</div><div class="profile-info-value" id="profile_show_viewed_count">${data.info.views}</div><div class="cb"></div></div>`;
+                    }
+                    let OBJ_join = "";
+                    if(data.info.joined !== undefined) {
+                        OBJ_join = `<div class="show_info outer-box-bg-as-border"><div class="profile-info-label">${localizeString("about.membersince")}</div><div class="profile-info-value" id="profile_show_member_since">${data.info.joined}</div><div class="cb"></div></div>`;
+                    }
+                    let OBJ_subcount = "";
+                    if(data.info.subs !== undefined) {
+                        OBJ_subcount = `<div class="show_info outer-box-bg-as-border"><div class="profile-info-label">${(Number(data.SUBCOUNT.replace(/,|./g, "")) > 1) ? localizeString("about.subs") : localizeString("about.sub")}</div><div class="profile-info-value" id="profile_show_subscriber_count">${data.SUBCOUNT}</div><div class="cb"></div></div>`;
+                    }
+                    let OBJ_country = "";
+                    if(data.info.country !== undefined) {
+                        OBJ_country = `<div class="show_info outer-box-bg-as-border"><div class="profile-info-label">${localizeString("about.country")}</div><div class="profile-info-value" id="profile_show_country">${data.info.country}</div><div class="cb"></div></div>`;
+                    }
+                    var OBJ_USERPROFILE = `<div id="user_profile" class="inner-box" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
+<div class="box-title title-text-color">Profile</div>
+<div class="cb"></div>
+<div id="user_profile-body">
+<div class="profile_info vcard">
+${OBJ_views}
+${OBJ_join}
+${OBJ_subcount}
+${OBJ_country}
+${OBJ_SECTIONS}
+<div class="show_info outer-box-bg-as-border" style="border-bottom-width:1px;margin-bottom:4px;line-height:140%" dir="ltr">${data.info.description}${data?.INFO?.string?.BIO}</div>
+</div>
+</div>
+<div class="cb"></div>
+</div>`;
+                    var OBJ_PLAYNAVA = `<div id="playnav-body" style="position: inherit;">
+<div id="playnav-player" class="playnav-player-container" style="visibility: visible; left: 0px;position: inherit;">
+<movie-player id="video-player"></movie-player>
+</div>
+<div id="playnav-playview" class="" style="display: block;position: absolute;height: 0;">
+<div id="playnav-left-panel" style="display: block;">
+<div id="playnav-video-details">
+<div id="playnav-bottom-links">
+<div id="playnav-bottom-links-clip" class="playnav-bottom-links-clip">
+<table>
+<tbody>
+<tr>
+<td id="playnav-panel-tab-info" class="panel-tab-selected">
+<table class="panel-tabs">
+<tbody>
+<tr>
+<td class="panel-tab-title-cell">
+<div class="playnav-panel-tab-icon" id="panel-icon-info" onclick="playnav.selectPanel('info')"></div>
+<div class="playnav-bottom-link" id="info-bottom-link">
+<a href="javascript:;" onclick="playnav.selectPanel('info')">Info</a>
+</div>
+<div class="spacer">&nbsp;</div>
+</td>
+</tr>
+<tr>
+<td class="panel-tab-indicator-cell inner-box-opacity">
+<div class="panel-tab-indicator-arrow" style="border-bottom-color: rgb(238, 238, 255) !important;"></div>
+</td>
+</tr>
+</tbody>
+</table>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cb"></div>
+<div class="playnav-video-panel inner-box-colors border-box-sizing" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
+<div id="playnav-video-panel-inner" class="playnav-video-panel-inner border-box-sizing" style="overflow: auto;">
+<div id="playnav-panel-info" class="scrollable" style="display: block;">
+<div id="channel-like-action">
+<div id="channel-like-buttons">
+<button title="I like this" type="button" class="yt-uix-button yt-uix-tooltip" data-watchid="${videoData.id}" onclick="document.cosmicCat.func.likeThis(this.getAttribute('data-watchid'));return false;" id="watch-like" role="button" aria-pressed="false">
+<img class="yt-uix-button-icon yt-uix-button-icon-watch-like" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""><span class="yt-uix-button-content">Like</span>
+</button>
+&nbsp;
+<button title="I dislike this" type="button" class="yt-uix-button yt-uix-tooltip yt-uix-button-empty" data-watchid="${videoData.id}" onclick="document.cosmicCat.func.dislikeThis(this.getAttribute('data-watchid'));return false;" id="watch-unlike" role="button" aria-pressed="false">
+<img class="yt-uix-button-icon yt-uix-button-icon-watch-unlike" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
+</button>
+</div>
+<div id="channel-like-logged-out" class="hid">
+<strong>
+<a href="${document.cosmicCat.data.loginUrl}">Sign in</a> or <a href="https://www.youtube.com/signup">sign up</a> now!
+</strong>
+</div>
+</div>
+<div id="playnav-curvideo-title" class="inner-box-link-color" dir="ltr">
+<a style="cursor:pointer;margin-right:7px" href="/watch?v=${videoData.id}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
+${videoData.title}
+</a>
+</div>
+<div id="playnav-curvideo-info-line">
+${localizeString("watch.from", data.info.name)} &nbsp;|
+<span dir="ltr">${videoData.views[1]}</span>
+&nbsp;|
+<span id="playnav-curvideo-view-count">${videoData.views[0]}</span>
+</div>
+<div class="cb"></div>
+<div id="channel-like-result" class="hid">
+<div id="watch-actions-area" class="yt-rounded">&nbsp;</div>
+</div>
+<div id="channel-like-loading" class="hid">${localizeString("global.loading")}</div>
+<div class="cb"></div>
+<div id="playnav-curvideo-description-container">
+<div id="playnav-curvideo-description" dir="ltr">${videoData.description}</div>
+</div>
+<a href="https://www.youtube.com/watch?v=${videoData.id}" id="playnav-watch-link" onclick="playnav.goToWatchPage()">View comments, related videos, and more</a>
+<div id="playnav-curvideo-controls"></div>
+<div class="cb"></div>
+</div>
+<div id="playnav-panel-comments" class="hid"></div>
+<div id="playnav-panel-favorite" class="hid"></div>
+<div id="playnav-panel-share" class="hid scrollable"></div>
+<div id="playnav-panel-playlists" class="hid"></div>
+<div id="playnav-panel-flag" class="hid scrollable"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="playnav-play-panel" style="margin-top: -400px;height: 0;">
+<div id="playnav-play-content" style="height: 601px;">
+<div class="playnav-playlist-holder" id="playnav-play-playlist-uploads-holder">
+<div id="playnav-play-uploads-scrollbox" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);" class="scrollbox-wrapper inner-box-colors">
+<div class="scrollbox-content playnav-playlist-non-all">
+<div class="scrollbox-body" style="height: 514px;">
+<div class="outer-scrollbox">
+<div id="playnav-play-uploads-items" class="inner-scrollbox">
+<div id="playnav-play-uploads-page-0" class="scrollbox-page loaded videos-rows-50">
+${videos}
+<div id="uploads-cb" class="cb"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>`;
+                    var OBJ_PLAYNAV = `<div id="user_playlist_navigator" style="background-color: rgb(153, 153, 153); color: rgb(0, 0, 0);position: inherit;" class="outer-box yt-rounded">
+<div id="playnav-channel-header" class="inner-box-bg-color" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
+<div id="playnav-title-bar">
+<div id="playnav-channel-name" style="background-color: rgb(153, 153, 153); color: rgb(0, 0, 0);" class="outer-box-bg-color">
+<div class="channel-thumb-holder outer-box-color-as-border-color"><div class="user-thumb-semismall">
+<div>
+<img src="${data.info.avatar[0].url}">
+</div>
+</div>
+</div>
+<div class="channel-title-container">
+<div class="channel-title outer-box-color" id="channel_title" dir="ltr">${data.info.name}</div>
+<div class="channel-title outer-box-color" style="font-size:11px" id="channel_base_title">${data.info.name}'s ${localizeString("global.channel")}</div>
+</div>
+<div id="subscribe-buttons">
+<span class="subscription-container">
+<button type="button" class="subscribe-button yt-uix-button yt-uix-button-urgent yt-uix-tooltip" onclick="document.cosmicCat.func.subscribe();return false;" title="Click to be notified of new videos from this channel" role="button" data-tooltip-text="Click to be notified of new videos from this channel">
+<span class="yt-uix-button-content">${data.SUBSCRIBE ? localizeString("buttons.subscribed") : localizeString("buttons.subscribe")}</span>
+</button>
+<span class="subscription-subscribed-container hid">
+<span class="subscription-options-button subscription-expander yt-uix-expander yt-uix-expander-collapsed">
+<span class="yt-uix-expander-head yt-rounded">
+<button class="yt-uix-expander-arrow" onclick="return false;">
+</button>
+<span class="yt-alert yt-alert-success yt-alert-small yt-alert-naked yt-rounded">
+<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon" alt="Alert icon">
+<span class="yt-alert-content">${localizeString("buttons.subscribed")}</span>
+</span>
+</span>
+</span>
+</span>
+</span>
+</div>
+</div>
+<div id="playnav-chevron" style="border-left-color: rgb(153, 153, 153);">&nbsp;</div>
+</div>
+<div id="playnav-navbar">
+<table>
+<tbody>
+<tr>
+<td>
+<a class="navbar-tab inner-box-link-color navbar-tab-selected" id="playnav-navbar-tab-playlists">Uploads</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cb"></div>
+</div>
+<div id="subscription-button-module-menu" class="hid subscription-menu-expandable subscription-menu">
+<div class="subscription-menu-not-logged-in">
+<strong>
+<a href="${document.cosmicCat.data.loginUrl}">Sign in</a> or <a href="https://www.youtube.com/signup">sign up</a> now!
+</strong>
+</div>
+</div>
+${(videos.length > 0) ? OBJ_PLAYNAVA : ""}
+</div>`;
+                    var OBJ_RECENTACT;
+                    var OBJ_LEFTCOLL = `<div class="left-column" id="main-channel-left">
+<div class="inner-box" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
+<div style="float:left;padding:0 4px 4px 0" class="link-as-border-color">
+<div class="user-thumb-xlarge">
+<div>
+<a href="https://www.youtube.com/channel/${data.info.id}"><img src="${data.info.avatar[0].url}"></a>
+</div>
+</div>
+</div>
+<div style="float:left;width:170px">
+<div class="box-title title-text-color" title="${data.info.name}" style="float:none;padding-left:4px;margin-top:-2px;width:170px;overflow:hidden;font-size:111%">
+<span class="yt-user-name" dir="ltr">${data.info.name}</span>
+</div>
+<div style="whitespace:no-wrap;position:relative;width:170px;">
+<div>
+<span class="subscription-container">
+<button type="button" class="subscribe-button yt-uix-button yt-uix-button-urgent yt-uix-tooltip" onclick="document.cosmicCat.func.subscribe();return false;" title="Click to be notified of new videos from this channel" role="button">
+<span class="yt-uix-button-content">${data.SUBSCRIBE ? localizeString("buttons.subscribed") : localizeString("buttons.subscribe")}</span>
+<img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
+</button>
+</span>
+</div>
+</div>
+${thelegend}
+</div>
+<div class="cb"></div>
+</div>
+${OBJ_USERPROFILE}
+${OBJ_SUBS}
+</div>`;
+                    var OBJ_RIGHTCOLL = `<div class="right-column" id="main-channel-right">
+<div class="inner-box" id="user_recent_activity" style="background-color: rgb(238, 238, 255); color: rgb(51, 51, 51);">
+<div style="zoom:1">
+<div class="box-title title-text-color">Recent Activity</div>
+<div class="cb"></div>
+</div>
+<div id="user_recent_activity-body">
+<div id="feed_table">
+<div class="text-field recent-activity-content outer-box-bg-as-border" style="_width:610px">
+<table width="97%" cellspacing="0" cellpadding="0" border="0">
+<tbody>${recentfeed}</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+</div>`;
+                    var OBJ_CHANCON = `<div class="outer-box" id="main-channel-content" style="z-index: 0;background-color: rgb(153, 153, 153); color: rgb(0, 0, 0);">
+${OBJ_LEFTCOLL}${OBJ_RIGHTCOLL}
+<div class="cb"></div>
+</div>`;
+                    return `<div id="channel-body" style="background-color: rgb(204, 204, 204)" class="jsloaded">
+<div id="channel-base-div">
+${OBJ_PLAYNAV}
+${OBJ_CHANCON}
+</div>
+</div>
+<div class="cb">
+<div class="clear"></div>
+</div>`;
+                };
+                let channel3 = () => {
+                };
+                switch (arg) {
+                    case 0:
+                        return channel1();
+                    case 1:
+                        return channel2();
+                    case 2:
+                        return channel3();
+                    default:
+                        return error("Channels.renderPage: Supply valid number between 0-2");
+                }
+            },
+            Fetch: {
+                Videos: async () => {
+                    return await fetch(`https://www.youtube.com${window.location.pathname}/videos`).then(a => document.cosmicCat.Utils.convertXHRtoJSON(a.text())).then(res => {
+                        if (res.error) throw Error();
+
+                        let tab = document.cosmicCat.Utils.browseTabs.find(res, "videos");
+                        let contents = document.cosmicCat.Utils.browseTabs.content(tab)[0]?.gridRenderer?.items;
+
+                        if (!contents) throw Error();
+
+                        let result = [];
+
+                        for (let i = 0; i < contents.length; i++) {
+                            if (!contents[i].continuationItemRenderer) {
+                                result[i] = document.cosmicCat.func.organizeVideoData(contents[i].gridVideoRenderer);
+                            }
+                        }
+
+                        return result;
+                    }).catch(err => {
+                        return [];
+                    });
+                },
+                Info: async () => {
+                    return await fetch(`https://www.youtube.com${window.location.pathname}/about`).then(a => document.cosmicCat.Utils.convertXHRtoJSON(a.text())).then(res => {
+                        if (res.error) throw Error();
+
+                        let tab = document.cosmicCat.Utils.browseTabs.find(res, "about");
+                        let contents = document.cosmicCat.Utils.browseTabs.content(tab)[0].channelAboutFullMetadataRenderer;
+
+                        if (!contents) throw Error();
+
+                        let result = document.cosmicCat.Utils.Sort.channelData(contents);
+
+                        return result;
+                    }).catch(err => {
+                        return [];
+                    });
+                },
+                Feed: async () => {
+                    return await fetch(`https://www.youtube.com${window.location.pathname}/community`).then(a => document.cosmicCat.Utils.convertXHRtoJSON(a.text())).then(res => {
+                        if (res.error) throw Error();
+
+                        let tab = document.cosmicCat.Utils.browseTabs.find(res, "community");
+                        let contents = document.cosmicCat.Utils.browseTabs.content(tab);
+
+                        if (!contents) throw Error();
+
+                        let result = [];
+
+                        for (let i = 0; i < contents.length; i++) {
+                            if (!contents[i].continuationItemRenderer) {
+                                result[i] = document.cosmicCat.Utils.Sort.feedData(contents[i]);
+                            }
+                        }
+
+                        return result;
+                    }).catch(err => {
+                        return [];
+                    });
+                }
+            }
+        },
         Subscriptions: {
             getChannelInfo: async () => {
                 let t = await fetch("https://www.youtube.com/feed/channels");
@@ -1909,7 +2067,11 @@ ${__a[1]}`;
                 return document.cosmicCat.Subscriptions.handleData(t.text());
             },
             handleData: (a, b) => {
-                return a.then(n => JSON.parse(n.split("var ytInitialData = ")[1].split(";</script>")[0]).contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents).then(n => (b == 1) ? n = n[0].itemSectionRenderer.contents[0].shelfRenderer.content.expandedShelfContentsRenderer.items : this);
+                return a.then(n => {
+                    let p = JSON.parse(n.split("var ytInitialData = ")[1].split(";</script>")[0]).contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content;
+                    return p ? p.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].shelfRenderer.content.expandedShelfContentsRenderer.items : [];
+                    //then(n => (b == 1) ? n = n[0].itemSectionRenderer.contents[0].shelfRenderer.content.expandedShelfContentsRenderer.items : []) : [];
+                });
             }
         },
         Watch: {
@@ -2716,7 +2878,7 @@ html #player.watch-small .html5-video-player:not(.ideal-aspect) .html5-main-vide
 <a class="end" href="/logout">${localizeString("personal.signout")}</a>
 </li>
 <li class="masthead-expanded-menu-item">
-<a href="#" onclick="yt.www.masthead.accountswitch.toggle(); return false;">${localizeString("personal.switchaccount")}</a>
+<a href="/channel_switcher" onclick="yt.www.masthead.accountswitch.toggle(); return false;">${localizeString("personal.switchaccount")}</a>
 </li>
 </ul>
 </div>
@@ -2789,30 +2951,29 @@ html #player.watch-small .html5-video-player:not(.ideal-aspect) .html5-main-vide
     document.cosmicCat.data.country = document.cosmicCat.func.parseCoun(yt.config_.GL);
 
     if(window.location.pathname == "/") {
-        let FUNC = (async () => {
-            let u = document.createElement("link");
-            u.setAttribute("id", "www-guide");
-            u.setAttribute("rel", "stylesheet");
-            u.setAttribute("href", "//s.ytimg.com/yts/cssbin/www-guide-vfljovH6N.css");
-            document.querySelector("head").append(u);
+        let u = document.createElement("link");
+        u.setAttribute("id", "www-guide");
+        u.setAttribute("rel", "stylesheet");
+        u.setAttribute("href", "//s.ytimg.com/yts/cssbin/www-guide-vfljovH6N.css");
+        document.querySelector("head").append(u);
 
-            let guidebuilder = "";
-            let subsbuilder = "";
-            let c = "";
-            if(BOOL_LOGIN === true) {
-                let subsarr = await document.cosmicCat.Subscriptions.getChannelInfo();
-                let mhtml = ``;
-                for (let i = 0; i < subsarr.length; i++) {
-                    let html = `<li class="guide-item-container">
+        let guidebuilder = "";
+        let subsbuilder = "";
+        let c = "";
+        if(BOOL_LOGIN === true) {
+            let subsarr = await document.cosmicCat.Subscriptions.getChannelInfo();
+            let mhtml = ``;
+            for (let i = 0; i < subsarr.length; i++) {
+                let html = `<li class="guide-item-container">
 <a class="guide-item" data-feed-name="${subsarr[i].channelRenderer.title.simpleText}" href="/channel/${subsarr[i].channelRenderer.channelId}">
 <span class="thumb">
 <img class="system-icon" src="${subsarr[i].channelRenderer.thumbnail.thumbnails[0].url}" alt="">
 </span><span class="display-name">${subsarr[i].channelRenderer.title.simpleText}</span>
 </a>
 </li>`;
-                    mhtml += html;
-                }
-                subsbuilder = `<div class="guide">
+                mhtml += html;
+            }
+            subsbuilder = `<div class="guide">
 <div id="channel">
 <span id="channel-thumb">
 <a href="/profile" class="yt-user-photo">
@@ -2881,32 +3042,32 @@ ${mhtml}
 </div>`;
             }
 
-            document.cosmicCat.func.waitForElm("#page").then(async elm => {
-                let categories = ["technoblade", "trending", "popular", "music", "live", "gadgets", "news", "sports", "education", "howto"];
-                for (let i = 0; i < categories.length; i++) {
-                    let caties = await document.cosmicCat.load.homepage_list(categories[i]);
-                    let html = `<li class="guide-item-container">
+        document.cosmicCat.func.waitForElm("#page").then(async elm => {
+            let categories = ["technoblade", "trending", "popular", "music", "live", "gadgets", "news", "sports", "education", "howto"];
+            for (let i = 0; i < categories.length; i++) {
+                let caties = await document.cosmicCat.load.homepage_list(categories[i]);
+                let html = `<li class="guide-item-container">
 <a class="guide-item" data-feed-name="${caties.class}" data-feed-url="${caties.url}" onclick="document.cosmicCat.load.home_category(this)">
 <span class="thumb">
 <img class="system-icon system ${caties.class}" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
 </span><span class="display-name">${caties.name}</span>
 </a>
 </li>`;
-                    c += html;
-                }
-                document.querySelector(".cockie").innerHTML = c;
-            });
+                c += html;
+            }
+            document.querySelector(".cockie").innerHTML = c;
+        });
 
-            document.cosmicCat.func.waitForElm("#page").then(async () => {
-                let w;
-                if(window.location.search == "?c=subscriptions") {
-                    w = document.querySelector("[data-feed-name='subscriptions']");
-                } else
-                    w = document.querySelector("[data-feed-name='youtube']");
-                document.cosmicCat.load.home_category(w);
-            });
+        document.cosmicCat.func.waitForElm("#page").then(async () => {
+            let w;
+            if(window.location.search == "?c=subscriptions") {
+                w = document.querySelector("[data-feed-name='subscriptions']");
+            } else
+                w = document.querySelector("[data-feed-name='youtube']");
+            document.cosmicCat.load.home_category(w);
+        });
 
-            return `<div id="content">
+        OBJ_CHANNEL = `<div id="content">
 <div class="guide-layout-container enable-fancy-subscribe-button">
 <div class="guide-container">
 ${guidebuilder}
@@ -2959,33 +3120,30 @@ ${localizeString("global.loading")}
 <div id="feed-background" style="width: 790px;"></div>
 </div>
 </div>`;
-        })();
-        OBJ_CHANNEL = await FUNC;
     }
     if(window.location.pathname.split("/")[1].match(/watch/i)) {
-        let FUNC = (async () => {
-            const {title, views, upload} = document.cosmicCat.func.organizeVideoData(ytInitialData.contents.twoColumnWatchNextResults.results?.results?.contents[0]?.videoPrimaryInfoRenderer);
-            const {owner, description} = document.cosmicCat.func.organizeVideoData(ytInitialData.contents.twoColumnWatchNextResults.results?.results?.contents[1]?.videoSecondaryInfoRenderer);
-            let videoData = document.cosmicCat.func.organizeVideoData(ytInitialPlayerResponse);
-            BOOL_SUBSCRIBE = document.cosmicCat.func.getSubscription();
-            var VALUE_SUGGVIDLOG = (BOOL_LOGIN == true) ? "addto-watch-later-button": "addto-watch-later-button-sign-in";
-            var VALUE_VIDEOTAGS = "";
-            var OBJ_SUGGESTEDVIDEO = [];
-            if (ytInitialData.contents.twoColumnWatchNextResults.secondaryResults) {
-                OBJ_SUGGESTEDVIDEO = ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results[1].itemSectionRenderer ? ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results[1].itemSectionRenderer.contents : ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results;
-            }
-            var OBJ_SUGGESTEDVIDEOS = "";
-            var VALUE_SUGGESTEDTOKEN = "";
-            var VALUE_SUBBUTTON = document.cosmicCat.func.getSubscription() ? "subscribed" : "subscribe";
-            var isLiked = ytInitialData.contents.twoColumnWatchNextResults.results?.contents?.twoColumnWatchNextResults?.results?.results?.contents?.find(a => a.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer?.videoActions?.menuRenderer?.topLevelButtons[0]?.toggleButtonRenderer?.isToggled ? "liked" : "";
-            var isDisliked = ytInitialData.contents.twoColumnWatchNextResults.results?.contents?.twoColumnWatchNextResults?.results?.results?.contents?.find(a => a.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer?.videoActions?.menuRenderer?.topLevelButtons[1]?.toggleButtonRenderer?.isToggled ? "unliked" : "";
-            for (let i = 0; i < videoData.tags.length; i++) {
-                VALUE_VIDEOTAGS += `<li><a href="https://www.youtube.com/results?search_query=${videoData.tags[i]}&amp;search=tag">${videoData.tags[i]}</a></li>`;
-            }
-            for (let i = 0; i < OBJ_SUGGESTEDVIDEO.length; i++) {
-                if(OBJ_SUGGESTEDVIDEO[i].compactVideoRenderer) {
-                    let videoData = document.cosmicCat.func.organizeVideoData(OBJ_SUGGESTEDVIDEO[i].compactVideoRenderer);
-                    OBJ_SUGGESTEDVIDEOS += `<li class="video-list-item">
+        const {title, views, upload} = document.cosmicCat.func.organizeVideoData(ytInitialData.contents.twoColumnWatchNextResults.results?.results?.contents[0]?.videoPrimaryInfoRenderer);
+        const {owner, description} = document.cosmicCat.func.organizeVideoData(ytInitialData.contents.twoColumnWatchNextResults.results?.results?.contents[1]?.videoSecondaryInfoRenderer);
+        let videoData = document.cosmicCat.func.organizeVideoData(ytInitialPlayerResponse);
+        BOOL_SUBSCRIBE = document.cosmicCat.func.getSubscription();
+        var VALUE_SUGGVIDLOG = (BOOL_LOGIN == true) ? "addto-watch-later-button": "addto-watch-later-button-sign-in";
+        var VALUE_VIDEOTAGS = "";
+        var OBJ_SUGGESTEDVIDEO = [];
+        if (ytInitialData.contents.twoColumnWatchNextResults.secondaryResults) {
+            OBJ_SUGGESTEDVIDEO = ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results[1].itemSectionRenderer ? ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results[1].itemSectionRenderer.contents : ytInitialData.contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results;
+        }
+        var OBJ_SUGGESTEDVIDEOS = "";
+        var VALUE_SUGGESTEDTOKEN = "";
+        var VALUE_SUBBUTTON = document.cosmicCat.func.getSubscription() ? "subscribed" : "subscribe";
+        var isLiked = ytInitialData.contents.twoColumnWatchNextResults.results?.contents?.twoColumnWatchNextResults?.results?.results?.contents?.find(a => a.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer?.videoActions?.menuRenderer?.topLevelButtons[0]?.toggleButtonRenderer?.isToggled ? "liked" : "";
+        var isDisliked = ytInitialData.contents.twoColumnWatchNextResults.results?.contents?.twoColumnWatchNextResults?.results?.results?.contents?.find(a => a.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer?.videoActions?.menuRenderer?.topLevelButtons[1]?.toggleButtonRenderer?.isToggled ? "unliked" : "";
+        for (let i = 0; i < videoData.tags.length; i++) {
+            VALUE_VIDEOTAGS += `<li><a href="https://www.youtube.com/results?search_query=${videoData.tags[i]}&amp;search=tag">${videoData.tags[i]}</a></li>`;
+        }
+        for (let i = 0; i < OBJ_SUGGESTEDVIDEO.length; i++) {
+            if(OBJ_SUGGESTEDVIDEO[i].compactVideoRenderer) {
+                let videoData = document.cosmicCat.func.organizeVideoData(OBJ_SUGGESTEDVIDEO[i].compactVideoRenderer);
+                OBJ_SUGGESTEDVIDEOS += `<li class="video-list-item">
 <a href="https://www.youtube.com/watch?v=${videoData.id}" class="related-video yt-uix-contextlink yt-uix-sessionlink">
 <span class="ux-thumb-wrap contains-addto">
 <span class="video-thumb ux-thumb yt-thumb-default-120">
@@ -3008,67 +3166,67 @@ ${localizeString("global.loading")}
 <span class="stat view-count">${videoData.views[0]}</span>
 </a>
 </li>`;
-                }
-                if(OBJ_SUGGESTEDVIDEO[i].continuationItemRenderer) {
-                    VALUE_SUGGESTEDTOKEN = OBJ_SUGGESTEDVIDEO[i].continuationItemRenderer.continuationEndpoint.continuationCommand.token;
-                }
             }
-            document.cosmicCat.func.waitForElm("#player").then((elm) => {
-                document.cosmicCat.player.Create(videoData.id, window.location.href.split("t=")[1] ? window.location.href.split("t=")[1].split("s")[0] : 1);
+            if(OBJ_SUGGESTEDVIDEO[i].continuationItemRenderer) {
+                VALUE_SUGGESTEDTOKEN = OBJ_SUGGESTEDVIDEO[i].continuationItemRenderer.continuationEndpoint.continuationCommand.token;
+            }
+        }
+        document.cosmicCat.func.waitForElm("#player").then((elm) => {
+            document.cosmicCat.player.Create(videoData.id, window.location.href.split("t=")[1] ? window.location.href.split("t=")[1].split("s")[0] : 1);
 
-                fetch("https://returnyoutubedislikeapi.com/Votes?videoId=" + videoData.id)
-                    .then((response) => response.json())
-                    .then((result) => {
-                    var likes = result.likes;
-                    var dislikes = result.dislikes;
-                    var rating = likes + dislikes > 0 ? (likes / (likes + dislikes)) * 100 : 50;
-                    document.querySelector(".video-extras-sparkbar-likes").style.width = rating + "%";
-                    document.querySelector(".likes").innerText = likes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    document.querySelector(".dislikes").innerText = dislikes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                })
-                    .catch((err) => {
-                    console.error("[ReturnYouTubeDislikes] Something went wrong with fetching api:", err);
-                });
+            fetch("https://returnyoutubedislikeapi.com/Votes?videoId=" + videoData.id)
+                .then((response) => response.json())
+                .then((result) => {
+                var likes = result.likes;
+                var dislikes = result.dislikes;
+                var rating = likes + dislikes > 0 ? (likes / (likes + dislikes)) * 100 : 50;
+                document.querySelector(".video-extras-sparkbar-likes").style.width = rating + "%";
+                document.querySelector(".likes").innerText = likes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                document.querySelector(".dislikes").innerText = dislikes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }).catch((err) => {
+                console.error("[ReturnYouTubeDislikes] Something went wrong with fetching api:", err);
             });
-            document.cosmicCat.func.waitForElm(".comments-post").then(() => {
-                document.querySelector(".comments-post").addEventListener("submit", async (e) => {
-                    e.preventDefault();
+        });
+        document.cosmicCat.func.waitForElm(".comments-post").then(() => {
+            document.querySelector(".comments-post").addEventListener("submit", async (e) => {
+                e.preventDefault();
 
-                    let comm = document.querySelector(".comments-textarea").value;
-                    if(comm.length < 1) return;
+                let comm = document.querySelector(".comments-textarea").value;
+                if(comm.length < 1) return;
 
-                    let api = await document.cosmicCat.AJAX.post("/youtubei/v1/comment/create_comment", `createCommentParams: "${document.querySelector("input#session").value}", commentText: "${comm}"`);
-                    if(api.actionResult.status == "STATUS_SUCCEEDED") {
-                        let re = api.actions[0].runAttestationCommand.ids;
+                let api = await document.cosmicCat.AJAX.post("/youtubei/v1/comment/create_comment", `createCommentParams: "${document.querySelector("input#session").value}", commentText: "${comm}"`);
+                if(api.actionResult.status == "STATUS_SUCCEEDED") {
+                    let re = api.actions[0].runAttestationCommand.ids;
 
-                        let comments = document.querySelector("ul.comment-list.all");
-                        let comment = document.createElement("li");
-                        comment.setAttribute("class", "comment yt-tile-default");
-                        comment.setAttribute("data-author-id", re[2].externalChannelId);
-                        comment.setAttribute("data-id", re[0].commentId);
-                        comment.setAttribute("data-score", "-1");
+                    let comments = document.querySelector("ul.comment-list.all");
+                    let comment = document.createElement("li");
+                    comment.setAttribute("class", "comment yt-tile-default");
+                    comment.setAttribute("data-author-id", re[2].externalChannelId);
+                    comment.setAttribute("data-id", re[0].commentId);
+                    comment.setAttribute("data-score", "-1");
 
-                        let json = {cum: "a", authorText: {simpleText: document.cosmicCat.data.name}, commentId: re[0].commentId, contentText: {runs: [{text: comm}]}, publishedTimeText: {runs: [{text: "Just now"}]}, authorEndpoint: {browseEndpoint: {canonicalBaseUrl: document.cosmicCat.data.link}}};
-                        let newc = document.cosmicCat.Comments.organizeData(json);
+                    let json = {cum: "a", authorText: {simpleText: document.cosmicCat.data.name}, commentId: re[0].commentId, contentText: {runs: [{text: comm}]}, publishedTimeText: {runs: [{text: "Just now"}]}, authorEndpoint: {browseEndpoint: {canonicalBaseUrl: document.cosmicCat.data.link}}};
+                    let newc = document.cosmicCat.Comments.organizeData(json);
 
-                        comment.innerHTML = newc;
-                        comments.insertBefore(comment, comments.children[0]);
+                    comment.innerHTML = newc;
+                    comments.insertBefore(comment, comments.children[0]);
 
-                        document.cosmicCat.Comments.Form.uninit();
+                    document.cosmicCat.Comments.Form.uninit();
 
-                        await document.cosmicCat.AJAX.post("/youtubei/v1/att/get", `engagementType: "ENGAGEMENT_TYPE_COMMENT_POST", ids: ${JSON.stringify(re)}`);
-                    }
-                    return false;
-                });
-            });
-            document.cosmicCat.func.waitForElm(".comment-list").then(async (elm) => {
-                if (ytInitialData.contents.twoColumnWatchNextResults.results?.results?.contents?.filter(b => b.itemSectionRenderer)[1]) {
-                    document.cosmicCat.toggleElm("#comments-view");
-                    let con = ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.filter(b => b.itemSectionRenderer)[1].itemSectionRenderer.contents[0].continuationItemRenderer.continuationEndpoint.continuationCommand.token;
-                    let comments = await document.cosmicCat.Comments.init(con);
+                    await document.cosmicCat.AJAX.post("/youtubei/v1/att/get", `engagementType: "ENGAGEMENT_TYPE_COMMENT_POST", ids: ${JSON.stringify(re)}`);
                 }
+                return false;
             });
-            return `<div id="content" class="">
+        });
+        document.cosmicCat.func.waitForElm(".comment-list").then(async (elm) => {
+            if (ytInitialData.contents.twoColumnWatchNextResults.results?.results?.contents?.filter(b => b.itemSectionRenderer)[1]) {
+                document.cosmicCat.toggleElm("#comments-view");
+                let con = ytInitialData.contents.twoColumnWatchNextResults.results.results.contents.filter(b => b.itemSectionRenderer)[1].itemSectionRenderer.contents[0].continuationItemRenderer.continuationEndpoint.continuationCommand.token;
+                let comments = await document.cosmicCat.Comments.init(con);
+            }
+        });
+
+        OBJ_CHANNEL = `<div id="content" class="">
 <div id="watch-container" itemscope="" itemtype="https://schema.org/VideoObject">
 <link itemprop="url" href="http://www.youtube.com/watch?v=${videoData.id}">
     <meta itemprop="name" content="${videoData.title}">
@@ -3133,7 +3291,6 @@ ${localizeString("global.loading")}
 <div id="watch-video-container">
 <div id="watch-video">
 <div id="watch-player" class="flash-player player-root wm-videoplayer">
-
 </div>
 </div>
 </div>
@@ -3148,7 +3305,7 @@ ${localizeString("global.loading")}
 </span>
 <button onclick=";return false;" title="${localizeString("tooltip.statistics")}" type="button" id="watch-insight-button" class="yt-uix-tooltip yt-uix-tooltip-reverse yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-insight" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="Show video statistics"><span class="yt-valign-trick"></span></span></button>
 </div>
-<span id="watch-like-unlike" class="yt-uix-button-group"><button onclick="document.cosmicCat.func.likeThis('${videoData.id}');return false;" title="${localizeString("tooltip.ilikethis")}" type="button" class="start yt-uix-tooltip-reverse yt-uix-button yt-uix-button-default yt-uix-tooltip" id="watch-like" role="button" data-tooltip-text="${localizeString("tooltip.ilikethis")}"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-like" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="${localizeString("tooltip.ilikethis")}"><span class="yt-valign-trick"></span></span><span class="yt-uix-button-content">${localizeString("buttons.like")} </span></button><button onclick="document.cosmicCat.func.dislikeThis('${videoData.id}');return false;" title="${localizeString("tooltip.idislikethis")}" type="button" class="end yt-uix-tooltip-reverse yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" id="watch-unlike" role="button" data-tooltip-text="${localizeString("tooltip.idislikethis")}"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-unlike" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="${localizeString("tooltip.idislikethis")}"><span class="yt-valign-trick"></span></span></button></span>
+<span id="watch-like-unlike" class="yt-uix-button-group"><button onclick="document.cosmicCat.Watch.likeVideo('${videoData.id}');return false;" title="${localizeString("tooltip.ilikethis")}" type="button" class="start yt-uix-tooltip-reverse yt-uix-button yt-uix-button-default yt-uix-tooltip" id="watch-like" role="button" data-tooltip-text="${localizeString("tooltip.ilikethis")}"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-like" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="${localizeString("tooltip.ilikethis")}"><span class="yt-valign-trick"></span></span><span class="yt-uix-button-content">${localizeString("buttons.like")} </span></button><button onclick="document.cosmicCat.Watch.dislikeThis('${videoData.id}');return false;" title="${localizeString("tooltip.idislikethis")}" type="button" class="end yt-uix-tooltip-reverse yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" id="watch-unlike" role="button" data-tooltip-text="${localizeString("tooltip.idislikethis")}"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-unlike" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="${localizeString("tooltip.idislikethis")}"><span class="yt-valign-trick"></span></span></button></span>
 <button type="button" class="yt-uix-tooltip-reverse yt-uix-button yt-uix-button-default yt-uix-tooltip" onclick=";return false;" title="${localizeString("tooltip.addto")}" role="button" data-tooltip-text="${localizeString("tooltip.addto")}"><span class="yt-uix-button-content"><span class="addto-label">${localizeString("buttons.addto")}</span> </span></button>
 <button onclick=";return false;" title="Share or embed this video" type="button" class="yt-uix-tooltip-reverse yt-uix-button yt-uix-button-default yt-uix-tooltip" id="watch-share" data-button-action="yt.www.watch.actions.share" role="button" data-tooltip-text="${localizeString("tooltip.share")}"><span class="yt-uix-button-content">${localizeString("buttons.share")} </span></button>
 <button onclick=";return false;" title="Flag as inappropriate" type="button" class="yt-uix-tooltip-reverse yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" id="watch-flag" data-button-action="yt.www.watch.actions.flag" role="button" data-tooltip-text="${localizeString("tooltip.flag")}"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-flag" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="${localizeString("tooltip.flag")}"><span class="yt-valign-trick"></span></span></button>
@@ -3323,52 +3480,26 @@ ${OBJ_SUGGESTEDVIDEOS}
 </div>
 </div>
 </div>`;
-        })();
-        OBJ_CHANNEL = await FUNC;
     }
     if(window.location.pathname.split("/")[1].match(/shorts/i)) {
         window.location.href = "https://www.youtube.com/watch?v=" + window.location.pathname.split("/")[2];
     }
     if(window.location.pathname.split("/")[1].match(/channel|user|^c{1}$/i)) {
         if (/community|videos|about|channels|playlists|membership|store/.test(window.location.pathname.split("/")[3])) window.location.href = window.location.pathname.split("/").slice(0,3).join("/");
-        let FUNC = (async () => {
-            let collection = {name: {}};
-            collection.CHANNELNAME = ytInitialData.metadata ? ytInitialData.metadata.channelMetadataRenderer.title : ytInitialData.header.interactiveTabbedHeaderRenderer.title.simpleText;
-            collection.CHANNELICON = ytInitialData.metadata ? ytInitialData.metadata.channelMetadataRenderer.avatar.thumbnails[0].url : ytInitialData.header.interactiveTabbedHeaderRenderer.boxArt.thumbnails[0].url;
-            collection.CHANNELURL = window.location.href;
-            collection.DESCRIPTION = ytInitialData.metadata ? ytInitialData.metadata.channelMetadataRenderer.description.replace(/\n/g, "<br />") : (ytInitialData.header.interactiveTabbedHeaderRenderer) ? ytInitialData.header.interactiveTabbedHeaderRenderer.description.simpleText.replace(/\n/g, "<br />") : "";
-            collection.SUBCOUNT = ytInitialData.header.c4TabbedHeaderRenderer ? ytInitialData.header.c4TabbedHeaderRenderer.subscriberCountText ? ytInitialData.header.c4TabbedHeaderRenderer.subscriberCountText.simpleText.split(" ")[0] : undefined : undefined;
-            collection.name.SUBCOUNT = ytInitialData.header.c4TabbedHeaderRenderer ? ytInitialData.header.c4TabbedHeaderRenderer.subscriberCountText ? ytInitialData.header.c4TabbedHeaderRenderer.subscriberCountText.simpleText.split(" ")[1].charAt(0).toUpperCase() + ytInitialData.header.c4TabbedHeaderRenderer.subscriberCountText.simpleText.split(" ")[1].slice(1) : undefined : undefined;
-            switch (true) {
-                case /K/.test(collection.SUBCOUNT):
-                    collection.SUBCOUNT = collection.SUBCOUNT.replace(/\./, "").replace(/K/, "000").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    break;
-                case /\d{3}/.test(collection.SUBCOUNT):
-                    collection.SUBCOUNT = collection.SUBCOUNT.replace(/\./, "").replace(/M/, "000000").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    break;
-                case /\d{2,3}\.\d{1,2}/.test(collection.SUBCOUNT):
-                    collection.SUBCOUNT = collection.SUBCOUNT.replace(/\./, "").replace(/M/, "00000").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    break;
-                case /\d{1,3}/.test(collection.SUBCOUNT):
-                    collection.SUBCOUNT = collection.SUBCOUNT.replace(/\./, "").replace(/M/, "0000").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    break;
-            }
-            let ihomev = ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer ? ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].channelVideoPlayerRenderer ? true : false : false;
-            collection.DEC = "";
-            collection.VIDEOS = await document.cosmicCat.load.channel_videos();
-            collection.SUBSCRIPTIONS = await document.cosmicCat.load.channel_subscriptions();
-            collection.RECENTFEED = await document.cosmicCat.load.recent_feed();
-            collection.INFO = await document.cosmicCat.load.channel_info();
-            collection.HOMEVIDEO = (ihomev == true) ? ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].channelVideoPlayerRenderer : {};
-            collection.SUBSCRIBE = document.cosmicCat.func.getSubscription();
-            setInterval(() => {document.head.querySelector("title").innerText = `${collection.CHANNELNAME}'s ${localizeString("global.channel")} - YouTube`;}, 100);
-            document.cosmicCat.func.waitForElm("#video-player").then(() => {
-                let id = (ihomev == true) ? ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].channelVideoPlayerRenderer.videoId : "";
-                document.cosmicCat.player.Create(id);
-            });
-            return document.cosmicCat.func.buildChannelTheme(1, collection);
-        })();
-        OBJ_CHANNEL = await FUNC;
+        let data = {
+            info: await document.cosmicCat.Channels.Fetch.Info(),
+            videos: await document.cosmicCat.Channels.Fetch.Videos(),
+            feed: await document.cosmicCat.Channels.Fetch.Feed(),
+            subs: ytInitialData.header.c4TabbedHeaderRenderer?.subscriberCountText?.simpleText
+        };
+
+        document.head.querySelector("title").innerText = `${data.info.name}'s ${localizeString("global.channel")} - YouTube`;
+
+        document.cosmicCat.func.waitForElm("#video-player").then(() => {
+            document.cosmicCat.player.Create();
+        });
+
+        OBJ_CHANNEL = document.cosmicCat.Channels.renderPage(1, data);
     }
     if(window.location.pathname.split("/")[1].match(/results/i)) {
         let FUNC = (async () => {
@@ -3552,18 +3683,21 @@ ${parse}
         OBJ_CHANNEL = await FUNC;
     }
     if(window.location.pathname.match(/\/feed\/explore/i)) {
-        let FUNC = (async () => {
-            let CSS1 = `<link rel="stylesheet" href="//s.ytimg.com/yts/cssbin/www-videos-nav-vflWHHWFS.css""/>`;
-            let CSS2 = `<link rel="stylesheet" href="//s.ytimg.com/yts/cssbin/www-browse-new-vflUr2lEG.css""/>`;
-            document.head.innerHTML += CSS1 + CSS2;
-            document.title = "Videos - YouTube";
-            var c = "";
-            document.cosmicCat.func.waitForElm("#page").then(async elm => {
-                elm.setAttribute("class", "browse-base");
-                let categories = ["most-viewed", "recommended", "music", "live", "gaming", "news", "sports", "edu", "howto"];
-                for (let i = 0; i < categories.length; i++) {
-                    let videos = await document.cosmicCat.load.browse_category(categories[i]);
-                    let html = `<div class="browse-collection">
+        let CSS1 = `<link rel="stylesheet" href="//s.ytimg.com/yts/cssbin/www-videos-nav-vflWHHWFS.css""/>`;
+        let CSS2 = `<link rel="stylesheet" href="//s.ytimg.com/yts/cssbin/www-browse-new-vflUr2lEG.css""/>`;
+
+        document.body.setAttribute("class", "ytg-old-clearfix guide-feed-v2");
+
+        document.head.innerHTML += CSS1 + CSS2;
+        document.title = "Videos - YouTube";
+
+        var c = "";
+        document.cosmicCat.func.waitForElm("#page").then(async elm => {
+            elm.setAttribute("class", "browse-base");
+            let categories = ["most-viewed", "recommended", "music", "live", "gaming", "news", "sports", "edu", "howto"];
+            for (let i = 0; i < categories.length; i++) {
+                let videos = await document.cosmicCat.load.browse_category(categories[i]);
+                let html = `<div class="browse-collection">
 <div class="ytg-box collection-header with-icon">
 <a class="heading ytg-box" href="">
 <img class="header-icon ${videos.class}" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
@@ -3578,12 +3712,12 @@ Play all
 </div>
 ${videos.html}
 </div>`;
-                    c += html;
-                }
-                document.querySelector(".load-more-content").innerHTML = c;
-                document.querySelector("#feed-loading-template").classList.add("hid");
-            });
-            return `<div id="baseDiv" class="video-info browse-base browse-videos">
+                c += html;
+            }
+            document.querySelector(".load-more-content").innerHTML = c;
+            document.querySelector("#feed-loading-template").classList.add("hid");
+        });
+        OBJ_CHANNEL = `<div id="baseDiv" class="video-info browse-base browse-videos">
 <div id="masthead-subnav" class="yt-nav yt-nav-dark">
 <ul>
 <li class="selected">
@@ -3646,8 +3780,6 @@ ${c}
 </div>
 <div class="clear"></div>
 </div>`;
-        })();
-        OBJ_CHANNEL = await FUNC;
     }
     OBJ_MASTHEAD = `<div id="masthead" class="" dir="ltr">
 <a id="logo-container" href="https://www.youtube.com/" title="YouTube home">
